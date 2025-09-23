@@ -132,7 +132,7 @@
 		return true;
 	}
 
-	let isMovingVertical = true;
+	let wasHorizontal = true;
 
 	function handleMouseMove({ clientY, clientX, altKey }: MouseEvent) {
 		if (isDisabled || !isDragging) return;
@@ -141,19 +141,24 @@
 		const dy = startY - clientY;
 		const dx = -(startX - clientX);
 
-		const imv = Math.abs(dx) > Math.abs(dy);
-		if (imv !== isMovingVertical) {
+		const isHorizontal = Math.abs(dx) > Math.abs(dy);
+
+		if (isHorizontal !== wasHorizontal) {
 			startX = clientX;
 			startY = clientY;
+			startValue = value;
 		}
 
-		isMovingVertical = imv;
+		wasHorizontal = isHorizontal;
 
-		const delta = isMovingVertical ? dx : dy;
+		const delta = isHorizontal ? dx : dy;
 		const deltaValue = delta / weight;
 
-		if (!altKey && snapPoints) value = clamp(snap(startValue + deltaValue, snapPoints));
-		else value = clamp(startValue + deltaValue);
+		if (!altKey && snapPoints) {
+			value = clamp(snap(startValue + deltaValue, snapPoints));
+		} else {
+			value = clamp(startValue + deltaValue);
+		}
 
 		return true;
 	}
