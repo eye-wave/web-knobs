@@ -1,7 +1,7 @@
 {
-	"name": "web-knobs",
+	"name": "@eyewave/web-knobs",
 	"description": "Component library for building customizable knob controls.",
-	"version": "1.0.0-beta.1",
+	"version": "0.0.0",
 	"repository": {
 		"url": "https://github.com/eye-wave/svelte-knobs"
 	},
