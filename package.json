@@ -1,6 +1,6 @@
 {
-	"name": "svelte-knobs",
-	"description": "Svelte component library for building customizable knob controls.",
+	"name": "web-knobs",
+	"description": "Component library for building customizable knob controls.",
 	"version": "1.0.0-beta.1",
 	"repository": {
 		"url": "https://github.com/eye-wave/svelte-knobs"
@@ -18,7 +18,6 @@
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
 		"test": "bun test --coverage",
 		"format": "prettier --write ."
 	},
@@ -44,36 +43,20 @@
 		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-static": "^3.0.8",
-		"@sveltejs/kit": "^2.17.1",
-		"@sveltejs/package": "^2.3.10",
+		"@sveltejs/adapter-static": "^3.0.10",
+		"@sveltejs/kit": "^2.49.2",
+		"@sveltejs/package": "^2.5.7",
 		"@sveltejs/vite-plugin-svelte": "^4.0.4",
-		"@types/eslint": "^9.6.1",
-		"autoprefixer": "^10.4.20",
-		"eslint": "^9.20.1",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.46.1",
-		"globals": "^15.15.0",
-		"lint-staged": "^15.4.3",
-		"prettier": "^3.5.1",
-		"prettier-plugin-svelte": "^3.3.3",
+		"prettier": "^3.7.4",
+		"prettier-plugin-svelte": "^3.4.1",
 		"publint": "^0.2.12",
-		"shiki": "^1.29.2",
-		"simple-git-hooks": "^2.11.1",
-		"svelte": "^5.20.0",
-		"svelte-check": "^4.1.4",
-		"typescript": "^5.7.3",
-		"typescript-eslint": "^8.24.0",
-		"vite": "^5.4.14",
+		"svelte": "^5.46.0",
+		"svelte-check": "^4.3.5",
+		"typescript": "^5.9.3",
+		"vite": "^5.4.21",
 		"@types/bun": "latest"
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module",
-	"simple-git-hooks": {
-		"pre-commit": "bun lint-staged"
-	},
-	"lint-staged": {
-		"*": "eslint --fix"
-	}
+	"type": "module"
 }
