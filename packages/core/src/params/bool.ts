@@ -1,4 +1,4 @@
-import { Param } from './base.js';
+import { Param } from './base';
 
 export class BoolParam extends Param<boolean> {
 	constructor() {

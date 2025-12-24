@@ -1,4 +1,4 @@
-import { clamp } from '$lib/helpers/clamp.js';
+import { clamp } from './clamp';
 
 export function polarToCartesian(
 	cx: number,

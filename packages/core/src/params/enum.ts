@@ -1,5 +1,5 @@
-import { clamp } from '$lib/helpers/clamp.js';
-import { Param } from './base.js';
+import { clamp } from '../helpers';
+import { Param } from './base';
 
 export type VariantsOf<T> = T extends EnumParam<infer U> ? U[number] : never;
 export class EnumParam<T extends readonly string[]> extends Param<T[number]> {

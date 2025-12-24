@@ -1,11 +1,16 @@
-import { Param } from './base.js';
+import { Param } from './base';
 
 export class LogParam extends Param<number> {
+	// @ts-ignore
 	#min: number;
+	// @ts-ignore
 	#max: number;
 
+	// @ts-ignore
 	#logMin: number;
+	// @ts-ignore
 	#logMax: number;
+
 	#logBase = Math.E;
 
 	#log(value: number): number {
