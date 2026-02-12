@@ -72,7 +72,7 @@ export class Draggable {
 
 	constructor() {}
 
-	public on(event: EventName, fn: Listener<Events[EventName]>) {
+	public on(event: EventName, fn: Listener<Events[EventName]>): void {
 		(this.listeners[event] ??= []).push(fn);
 	}
 
@@ -92,14 +92,16 @@ export class Draggable {
 		for (const fn of arr) fn(payload);
 	}
 
-	public handleDblClick() {}
-	public handleKeyDown() {}
-	public handleMouseDown() {}
-	public handleTouchStart() {}
-	public handleWheel() {}
+	public handleDblClick(): void {}
+	public handleKeyDown(): void {}
+	public handleMouseDown(): void {}
+	public handleTouchStart(): void {}
+	public handleWheel(): void {}
 }
 
-function toMobile(handler: ({ clientY }: MouseEvent) => void | boolean) {
+function toMobile(
+	handler: ({ clientY }: MouseEvent) => void | boolean
+): (event: TouchEvent) => void {
 	return (event: TouchEvent) => {
 		const touch = event.touches?.[0];
 		if (!touch) return;

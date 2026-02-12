@@ -1,10 +1,8 @@
 {
 	"name": "@web-knobs/core",
-	"type": "module",
 	"private": true,
-	"scripts": {
-		"build": "bun run build.ts"
-	},
+	"version": "0.0.0",
+	"type": "module",
 	"exports": {
 		"./params": {
 			"import": "./dist/params.js",
@@ -19,12 +17,18 @@
 			"types": "./dist/draggable.d.ts"
 		}
 	},
-	"devDependencies": {
-		"@types/bun": "latest",
-		"@types/node": "^25.0.3",
-		"bun-plugin-dts": "^0.3.0"
+	"scripts": {
+		"build": "rolldown -c",
+		"preview": "vite preview"
 	},
-	"peerDependencies": {
-		"typescript": "^5"
+	"devDependencies": {
+		"@swc/core": "^1.15.11",
+		"rolldown": "^1.0.0-rc.4",
+		"typescript": "~5.9.3",
+		"unplugin-isolated-decl": "^0.15.7",
+		"vite": "^8.0.0-beta.13"
+	},
+	"overrides": {
+		"vite": "^8.0.0-beta.13"
 	}
 }

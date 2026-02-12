@@ -1,14 +1,14 @@
-import { Param } from './base';
+import { Param, type KnobProps } from './base';
 
 export class BoolParam extends Param<boolean> {
 	constructor() {
 		super();
 	}
 
-	public readonly snapPoints = [0.0, 1.0];
-	public readonly snapThreshold = 0.5;
+	public readonly snapPoints: number[] = [0.0, 1.0] as const;
+	public readonly snapThreshold: number = 0.5 as const;
 
-	public get knobProps() {
+	public get knobProps(): KnobProps {
 		return {
 			snapPoints: this.snapPoints,
 			snapThreshold: this.snapThreshold

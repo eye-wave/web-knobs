@@ -17,7 +17,7 @@ export function describeArc(
 	value: number,
 	minAngle = -135,
 	maxAngle = 135
-) {
+): string {
 	const endAngle = valueToAngle(value, minAngle, maxAngle);
 
 	const [sx, sy] = polarToCartesian(cx, cy, radius, endAngle);
@@ -26,6 +26,6 @@ export function describeArc(
 	return ['M', sx, sy, 'A', radius, radius, 0, largeArcFlag, 0, ex, ey].join(' ');
 }
 
-export function valueToAngle(value: number, minAngle: number, maxAngle: number) {
+export function valueToAngle(value: number, minAngle: number, maxAngle: number): number {
 	return (maxAngle - minAngle) * clamp(value) + minAngle;
 }

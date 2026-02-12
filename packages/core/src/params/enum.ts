@@ -1,4 +1,5 @@
 import { clamp } from '../helpers';
+import type { KnobProps } from './base';
 import { Param } from './base';
 
 export type VariantsOf<T> = T extends EnumParam<infer U> ? U[number] : never;
@@ -8,14 +9,14 @@ export class EnumParam<T extends readonly string[]> extends Param<T[number]> {
 	#dictSize: number;
 
 	public get snapPoints(): number[] {
-		return this.#variants.map((v) => this.normalize(v));
+		return this.#variants.map<number>((v) => this.normalize(v));
 	}
 
 	public get snapThreshold(): number {
 		return 1.0 / (this.#variants.length - 1.0);
 	}
 
-	public get knobProps() {
+	public get knobProps(): KnobProps {
 		return {
 			snapPoints: this.snapPoints,
 			snapThreshold: this.snapThreshold

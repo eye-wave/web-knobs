@@ -1,1 +1,1 @@
-export const isBrowser = typeof window === 'object';
+export const isBrowser: boolean = typeof window === 'object';
