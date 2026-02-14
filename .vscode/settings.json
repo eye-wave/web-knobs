@@ -1,0 +1,6 @@
+{
+	"[svelte]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"biome.enabled": true
+}
