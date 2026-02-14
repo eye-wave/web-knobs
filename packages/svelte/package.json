@@ -1,5 +1,6 @@
 {
 	"name": "@web-knobs/svelte",
+	"version": "0.0.0",
 	"type": "module",
 	"private": true,
 	"scripts": {
@@ -27,7 +28,5 @@
 		"typescript": "^5.9.3",
 		"vite": "^7.2.6"
 	},
-	"keywords": [
-		"svelte"
-	]
+	"keywords": ["svelte"]
 }
