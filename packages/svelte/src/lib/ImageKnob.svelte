@@ -1,78 +1,85 @@
 <script lang="ts" module>
-	import type { DraggableProps } from './Draggable.svelte';
+	import type { ImageKnobReactive } from '@web-knobs/core/components/image-knob';
+	import type { DraggableReactive } from '@web-knobs/core/draggable';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	export type ImageKnobProps = DraggableProps & {
-		/**
-		 * Source for the knob image strip.
-		 */
-		src: string;
-
-		/**
-		 * Number of animation frames in the image.
-		 * By default the component will try to guess.
-		 */
-		numberOfFrames?: number;
-
-		/**
-		 * Width of the image in pixels.
-		 * Default width is 80;
-		 */
-		width?: number;
-
-		/**
-		 * Height of the image in pixels.
-		 * Default height is 80;
-		 */
-		height?: number;
-	};
+	export type DraggableProps = DraggableReactive &
+		ImageKnobReactive &
+		HTMLAttributes<HTMLDivElement>;
 </script>
 
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import type { SvelteHTMLElements } from 'svelte/elements';
-	import Draggable from './Draggable.svelte';
+	import {
+		DEFAULT_KNOB_SNAP_THRESHOLD,
+		DEFAULT_KNOB_STEP,
+		DEFAULT_KNOB_VALUE,
+		DEFAULT_KNOB_WEIGHT
+	} from '@web-knobs/core/draggable';
 
-	type Props = SvelteHTMLElements['div'] & ImageKnobProps;
+	import { createImageKnob, type ImageKnobApi } from '@web-knobs/core/components/image-knob';
+
+	import { onDestroy, onMount } from 'svelte';
+
 	let {
-		value = $bindable(0.5),
-		width = 80,
-		height = 80,
-		numberOfFrames,
+		children,
+		value = $bindable(DEFAULT_KNOB_VALUE),
+		disabled: isDisabled = false,
+		defaultValue = DEFAULT_KNOB_VALUE,
+		invertWheel = false,
+		step = DEFAULT_KNOB_STEP,
+		snapPoints,
+		snapThreshold = DEFAULT_KNOB_SNAP_THRESHOLD,
+		weight = DEFAULT_KNOB_WEIGHT,
+
+		// Image Knob props
 		src,
-		...defaultProps
-	}: Props = $props();
+		numberOfFrames = null,
+		width,
+		height,
 
+		...divProps
+	}: DraggableProps = $props();
+
+	let ref = $state<HTMLDivElement>();
+	let engine = $state<ImageKnobApi | null>(null);
+
+	onDestroy(() => engine?.destroy());
 	onMount(() => {
-		const image = new Image();
-		image.src = src;
-		image.onload = () => {
-			if ('width' in image && 'height' in image) {
-				console.warn('Automatic estimation of numberOfFrames might be inaccurate');
-				numberOfFrames = Math.floor(image.height / image.width) - 1;
-			} else {
-				throw Error('Failed to estimate numberOfFrames');
-			}
-		};
-	});
+		if (ref)
+			engine = createImageKnob(ref, {
+				src,
+				width,
+				height,
 
-	let transform = $derived(Math.floor(value * (numberOfFrames ?? 0)));
+				onValueChange: (v) => (value = v),
+				onDisabledChange: (v) => (isDisabled = v),
+				onDefaultValueChange: (v) => (defaultValue = v),
+				onInvertWheelChange: (v) => (invertWheel = v),
+				onStepChange: (v) => (step = v),
+				onSnapPointsChange: (v) => (snapPoints = v),
+				onSnapThresholdChange: (v) => (snapThreshold = v),
+				onWeightChange: (v) => (weight = v),
+
+				onSrcChange: (v) => (src = v),
+				onNumberOfFramesChange: (v) => (numberOfFrames = v),
+				onWidthChange: (v) => (width = v),
+				onHeightChange: (v) => (height = v)
+			});
+
+		$effect(() => engine?.setValue(value));
+		$effect(() => engine?.setDisabled(isDisabled));
+		$effect(() => engine?.setDefaultValue(defaultValue));
+		$effect(() => engine?.setInvertWheel(invertWheel));
+		$effect(() => engine?.setStep(step));
+		$effect(() => snapPoints && engine?.setSnapPoints(snapPoints));
+		$effect(() => engine?.setSnapThreshold(snapThreshold));
+		$effect(() => engine?.setWeight(weight));
+
+		$effect(() => engine?.setSrc(src));
+		$effect(() => engine?.setNumberOfFrames(numberOfFrames));
+		$effect(() => engine?.setWidth(width));
+		$effect(() => engine?.setHeight(height));
+	});
 </script>
 
-<Draggable
-	bind:value
-	style="width:{width}px;height:{height}px;{defaultProps.style}"
-	{...defaultProps}
->
-	<div
-		style:background-image="url({src})"
-		style:background-position="0 {-transform * height}px"
-	></div>
-</Draggable>
-
-<style>
-	div {
-		position: relative;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<div bind:this={ref} {...divProps} />

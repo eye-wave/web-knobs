@@ -1,4 +1,5 @@
 import { clamp } from './helpers';
+import { addReactive, type WithSilent } from './helpers/reactive';
 
 export const DEFAULT_KNOB_VALUE = 0.5;
 export const DEFAULT_KNOB_STEP = 0.05;
@@ -6,52 +7,27 @@ export const DEFAULT_KNOB_SNAP_THRESHOLD = 0.08;
 export const DEFAULT_KNOB_WEIGHT = 200;
 
 export type DraggableReactive = {
-	/**
-	 * Normalized value, ranged in 0.0 to 1.0 of the component.
-	 */
+	/** Normalized value, ranged in 0.0 to 1.0 of the component. */
 	value?: number;
-
-	/**
-	 * Disables all interactivity for the component.
-	 * When set to `true`, the component will be non-interactive.
-	 */
+	/** Disables all interactivity for the component. */
 	disabled?: boolean;
-
-	/**
-	 * Initial normalized value for the component.
-	 */
+	/** Initial normalized value for the component. */
 	defaultValue?: number;
-
-	/**
-	 * Inverts the direction of the wheel event.
-	 */
+	/** Inverts the direction of the wheel event. */
 	invertWheel?: boolean;
-
-	/**
-	 * The increment or decrement value for keyboard interactions.
-	 * Defaults to `0.05` if not specified.
-	 */
+	/** The increment or decrement value for keyboard interactions. Defaults to `0.05` if not specified. */
 	step?: number;
-
-	/**
-	 * Specific values that the knob will snap to.
-	 */
+	/** Specific values that the knob will snap to. */
 	snapPoints?: number[];
-
-	/**
-	 * Strength of the snapping.
-	 */
+	/** Strength of the snapping. */
 	snapThreshold?: number;
-
-	/**
-	 * Weight of the knob, determines how fast it moves when dragged.
-	 */
+	/** Weight of the knob, determines how fast it moves when dragged. */
 	weight?: number;
 };
 
 export type DraggableApi = {
+	readonly __state: DragState;
 	destroy: () => void;
-
 	setValue: (v: number) => void;
 	setDisabled: (v: boolean) => void;
 	setDefaultValue: (v: number) => void;
@@ -73,44 +49,10 @@ export type DraggableOptions = {
 	onWeightChange?: (v: number) => void;
 };
 
-// biome-ignore lint/suspicious/noExplicitAny: this 'any' is safe, special types are overriding it later in the code
-function addReactive<T>(api: any, fieldName: string, init: T, callback?: (v: T) => void) {
-	let value = init;
-
-	Object.defineProperty(api, fieldName, {
-		get() {
-			return value;
-		},
-		set(v: T) {
-			value = v;
-			callback?.(v);
-		},
-		configurable: false,
-		enumerable: false
-	});
-
-	api[fieldName + 'Silent'] = (v: T) => {
-		value = v;
-	};
-}
-
-type DragStateRaw = {
-	value: number;
-	isDisabled: boolean;
-	defaultValue: number;
-	invertWheel: boolean;
-	step: number;
-	snapPoints: number[];
-	snapThreshold: number;
-	weight: number;
-};
-
-type WithSilent<T> = T & {
-	[K in keyof T as `${Extract<K, string>}Silent`]: (v: T[K]) => void;
-};
-
+type DragStateRaw = Required<DraggableReactive>;
 type DragState = WithSilent<DragStateRaw>;
 
+/** Creates a Knob API inside an existing HTML element */
 export function createDraggable<E extends HTMLElement>(
 	container: E,
 	options: DraggableOptions = {}
@@ -126,11 +68,17 @@ export function createDraggable<E extends HTMLElement>(
 
 	// State
 	const s = {} as DragState;
-	addReactive(s, 'value', DEFAULT_KNOB_VALUE, (value) => {
-		options.onValueChange?.(value);
-		container.ariaValueNow = value.toPrecision(2);
-	});
-	addReactive(s, 'isDisabled', false, (isDisabled) => {
+	addReactive(
+		s,
+		'value',
+		DEFAULT_KNOB_VALUE,
+		(value) => {
+			options.onValueChange?.(value);
+			container.ariaValueNow = value.toPrecision(2);
+		},
+		false
+	);
+	addReactive(s, 'disabled', false, (isDisabled) => {
 		options.onDisabledChange?.(isDisabled);
 		container.style.cursor = isDisabled ? 'auto' : 'grab';
 	});
@@ -152,7 +100,7 @@ export function createDraggable<E extends HTMLElement>(
 	// Methods
 	const abort = new AbortController();
 
-	function init() {
+	function init(): void {
 		container.addEventListener('dblclick', handleDblClick, { signal: abort.signal });
 		container.addEventListener('keydown', handleKeyDown, { signal: abort.signal });
 		container.addEventListener('mousedown', handleMouseDown, { signal: abort.signal });
@@ -165,7 +113,7 @@ export function createDraggable<E extends HTMLElement>(
 		window.addEventListener('touchmove', handleTouchMove, { signal: abort.signal });
 	}
 
-	function destroy() {
+	function destroy(): void {
 		abort.abort();
 	}
 
@@ -181,8 +129,8 @@ export function createDraggable<E extends HTMLElement>(
 		return value;
 	}
 
-	function handleMouseDown(e: MouseEvent) {
-		if (s.isDisabled) return;
+	function handleMouseDown(e: MouseEvent): boolean {
+		if (s.disabled) return false;
 
 		isDragging = true;
 		startX = e.clientX;
@@ -195,8 +143,8 @@ export function createDraggable<E extends HTMLElement>(
 
 	let wasHorizontal = true;
 
-	function handleMouseMove({ clientY, clientX, altKey }: MouseEvent) {
-		if (s.isDisabled || !isDragging) return;
+	function handleMouseMove({ clientY, clientX, altKey }: MouseEvent): boolean {
+		if (s.disabled || !isDragging) return false;
 		shield.show();
 
 		const dy = startY - clientY;
@@ -224,8 +172,8 @@ export function createDraggable<E extends HTMLElement>(
 		return true;
 	}
 
-	function handleWheel(e: WheelEvent) {
-		if (s.isDisabled) return;
+	function handleWheel(e: WheelEvent): void {
+		if (s.disabled) return;
 		e.preventDefault();
 
 		const delta = (e.deltaY > 0 ? 1.0 : -1.0) * (s.invertWheel ? -1.0 : 1.0);
@@ -233,18 +181,18 @@ export function createDraggable<E extends HTMLElement>(
 		s.value = clamp(snap(s.value + delta * s.step, s.snapPoints));
 	}
 
-	function handleMouseUp() {
+	function handleMouseUp(): void {
 		isDragging = false;
 		shield.hide();
 	}
 
-	function handleDblClick() {
-		if (s.isDisabled) return;
+	function handleDblClick(): void {
+		if (s.disabled) return;
 		if (s.defaultValue) s.value = s.defaultValue;
 	}
 
-	function handleKeyDown(e: KeyboardEvent) {
-		if (s.isDisabled) return;
+	function handleKeyDown(e: KeyboardEvent): void {
+		if (s.disabled) return;
 		if (e.key === 'Escape') {
 			if (e?.currentTarget && 'blur' in e.currentTarget) {
 				(e.currentTarget as HTMLElement)?.blur();
@@ -278,9 +226,12 @@ export function createDraggable<E extends HTMLElement>(
 	init();
 
 	return {
+		get __state() {
+			return s;
+		},
 		destroy,
 		setValue: (v) => s.valueSilent(v),
-		setDisabled: (v) => s.isDisabledSilent(v),
+		setDisabled: (v) => s.disabledSilent(v),
 		setDefaultValue: (v) => s.defaultValueSilent(v),
 		setInvertWheel: (v) => s.invertWheelSilent(v),
 		setStep: (v) => s.stepSilent(v),
@@ -290,7 +241,12 @@ export function createDraggable<E extends HTMLElement>(
 	};
 }
 
-function createShield() {
+type Shield = {
+	show: () => void;
+	hide: () => void;
+};
+
+function createShield(): Shield {
 	const shield = document.createElement('div');
 
 	shield.style = 'position:fixed;inset:0;width:100vw;height:100vh;cursor:grab';
@@ -307,7 +263,9 @@ function createShield() {
 	};
 }
 
-function toMobile(handler: ({ clientY }: MouseEvent) => undefined | boolean) {
+function toMobile(
+	handler: ({ clientY }: MouseEvent) => undefined | boolean
+): (e: TouchEvent) => void {
 	return (event: TouchEvent) => {
 		const touch = event.touches?.[0];
 		if (!touch) return;

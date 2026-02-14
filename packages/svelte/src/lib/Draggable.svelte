@@ -1,7 +1,6 @@
 <script lang="ts" module>
 	import type { DraggableReactive } from '@web-knobs/core/draggable';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { Snippet } from 'svelte';
 
 	export type DraggableProps = DraggableReactive & HTMLAttributes<HTMLDivElement>;
 </script>

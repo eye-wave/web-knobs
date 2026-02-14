@@ -19,6 +19,10 @@
 		"./draggable": {
 			"import": "./dist/draggable.js",
 			"types": "./dist/draggable.d.ts"
+		},
+		"./components/*": {
+			"import": "./dist/components/*.js",
+			"types": "./dist/components/*.d.ts"
 		}
 	},
 	"scripts": {
