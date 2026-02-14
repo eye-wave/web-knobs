@@ -1,10 +1,6 @@
 import { Param, type KnobProps } from './base';
 
 export class BoolParam extends Param<boolean> {
-	constructor() {
-		super();
-	}
-
 	public readonly snapPoints: number[] = [0.0, 1.0] as const;
 	public readonly snapThreshold: number = 0.5 as const;
 

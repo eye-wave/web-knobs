@@ -1,14 +1,14 @@
 import { Param } from './base';
 
 export class LogParam extends Param<number> {
-	// @ts-ignore
+	// @ts-expect-error
 	#min: number;
-	// @ts-ignore
+	// @ts-expect-error
 	#max: number;
 
-	// @ts-ignore
+	// @ts-expect-error
 	#logMin: number;
-	// @ts-ignore
+	// @ts-expect-error
 	#logMax: number;
 
 	#logBase = Math.E;
@@ -28,11 +28,11 @@ export class LogParam extends Param<number> {
 		const sign = Math.sign(value);
 		const expValue = Math.abs(value);
 
-		if (this.#logBase === 10) return sign * (Math.pow(10, expValue) - 1);
-		if (this.#logBase === 2) return sign * (Math.pow(2, expValue) - 1);
+		if (this.#logBase === 10) return sign * (10 ** expValue - 1);
+		if (this.#logBase === 2) return sign * (2 ** expValue - 1);
 		if (this.#logBase === Math.E) return sign * (Math.exp(expValue) - 1);
 
-		return sign * (Math.pow(this.#logBase, expValue) - 1);
+		return sign * (this.#logBase ** expValue - 1);
 	}
 
 	set min(v: number) {

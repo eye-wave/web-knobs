@@ -4,6 +4,10 @@
 	"version": "0.0.0",
 	"type": "module",
 	"exports": {
+		".": {
+			"import": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
 		"./params": {
 			"import": "./dist/params.js",
 			"types": "./dist/params.d.ts"
