@@ -1,0 +1,30 @@
+{
+	"private": true,
+	"name": "@web-knobs/svelte",
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "rolldown -c",
+		"preview": "vite preview"
+	},
+	"dependencies": {
+		"react": "^19.2.0",
+		"react-dom": "^19.2.0",
+		"@web-knobs/core": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/node": "^24.10.1",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
+		"@vitejs/plugin-react": "^5.1.1",
+		"globals": "^16.5.0",
+		"rolldown": "^1.0.0-rc.4",
+		"typescript": "~5.9.3",
+		"unplugin-isolated-decl": "^0.15.7",
+		"vite": "^8.0.0-beta.13"
+	},
+	"overrides": {
+		"vite": "^8.0.0-beta.13"
+	}
+}
