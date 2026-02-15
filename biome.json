@@ -3,7 +3,7 @@
 	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
 	"files": {
 		"ignoreUnknown": false,
-		"includes": ["**", "!**/*.svelte"]
+		"includes": ["**", "!**/*.svelte", "!**/*.vue"]
 	},
 	"formatter": {
 		"enabled": true,

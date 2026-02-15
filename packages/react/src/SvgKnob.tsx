@@ -22,7 +22,7 @@ import {
 	type DraggableReactive
 } from '@web-knobs/core/draggable';
 
-import { type JSX, useEffect, useRef } from 'react';
+import { type ReactElement, useEffect, useRef } from 'react';
 
 type Props = SvgKnobOptions &
 	DraggableReactive &
@@ -69,7 +69,7 @@ export default function SvgKnob({
 	onSnapPointLengthChange,
 
 	...divProps
-}: Props): JSX.Element {
+}: Props): ReactElement {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const engineRef = useRef<SvgKnobApi | null>(null);
 

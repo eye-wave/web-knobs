@@ -13,7 +13,7 @@ import {
 	type DraggableReactive
 } from '@web-knobs/core/draggable';
 
-import { type JSX, useEffect, useRef } from 'react';
+import { type ReactElement, useEffect, useRef } from 'react';
 
 type Props = ImageKnobOptions &
 	DraggableReactive &
@@ -50,7 +50,7 @@ export default function ImageKnob({
 	onHeightChange,
 
 	...divProps
-}: Props): JSX.Element {
+}: Props): ReactElement {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const engineRef = useRef<ImageKnobApi | null>(null);
 

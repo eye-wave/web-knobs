@@ -9,7 +9,7 @@ import {
 	type DraggableReactive
 } from '@web-knobs/core/draggable';
 
-import { type JSX, useEffect, useRef } from 'react';
+import { type ReactElement, useEffect, useRef } from 'react';
 
 type Props = DraggableOptions & DraggableReactive & React.HTMLAttributes<HTMLDivElement>;
 
@@ -33,7 +33,7 @@ export default function Draggable({
 	onWeightChange,
 
 	...divProps
-}: Props): JSX.Element {
+}: Props): ReactElement {
 	const containerRef = useRef<HTMLDivElement | null>(null);
 	const engineRef = useRef<DraggableApi | null>(null);
 

@@ -1,26 +1,17 @@
 {
-	"name": "@eyewave/web-knobs",
-	"description": "Component library for building customizable knob controls.",
-	"version": "0.0.0",
-	"type": "module",
-	"repository": {
-		"url": "https://github.com/eye-wave/svelte-knobs"
-	},
-	"author": {
-		"name": "_eyewave",
-		"email": "89079979+eye-wave@users.noreply.github.com"
-	},
-	"license": "MIT",
-	"workspaces": ["packages/*","docs/"],
-	"scripts": {
-		"format": "biome format --write",
-		"lint": "biome lint --write"
-	},
-	"peerDependencies": {
-		"typescript": "^5.9.3"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.3.15",
-		"typedoc": "^0.28.17"
-	}
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "docs/"
+  ],
+  "scripts": {
+    "format": "biome format --write",
+    "lint": "biome lint --write"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.3.15"
+  }
 }

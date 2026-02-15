@@ -1,0 +1,44 @@
+{
+  "name": "@eyewave/web-knobs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "description": "Component library with audio related UI",
+  "repository": {
+    "url": "git+https://github.com/eye-wave/svelte-knobs.git"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*",
+    "!dist/**/*.spec.*"
+  ],
+  "author": {
+    "name": "_eyewave",
+    "email": "89079979+eye-wave@users.noreply.github.com"
+  },
+  "exports": {
+    "./core": {
+      "import": "./dist/core/index.js",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./svelte": {
+      "import": "./dist/svelte/index.js",
+      "svelte": "./dist/svelte/index.js",
+      "types": "./dist/svelte/index.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react/index.js",
+      "types": "./dist/react/index.d.ts"
+    },
+    "./vue": {
+      "import": "./dist/vue/index.js",
+      "types": "./dist/vue/types/index.d.ts"
+    }
+  },
+  "keywords": [
+    "vue",
+    "svelte",
+    "react",
+    "audio",
+    "knobs"
+  ]
+}

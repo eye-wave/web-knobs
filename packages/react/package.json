@@ -1,6 +1,6 @@
 {
 	"private": true,
-	"name": "@web-knobs/svelte",
+	"name": "@web-knobs/react",
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
