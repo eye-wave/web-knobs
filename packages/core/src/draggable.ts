@@ -193,31 +193,38 @@ export function createDraggable<E extends HTMLElement>(
 
 	function handleKeyDown(e: KeyboardEvent): void {
 		if (s.disabled) return;
-		if (e.key === 'Escape') {
-			if (e?.currentTarget && 'blur' in e.currentTarget) {
+
+		const isLeft = e.key === 'ArrowLeft' || e.key === 'ArrowDown';
+		const isRight = e.key === 'ArrowRight' || e.key === 'ArrowUp';
+
+		if (!isLeft && !isRight) {
+			if (e.key === 'Escape') {
 				(e.currentTarget as HTMLElement)?.blur();
 			}
+			return;
 		}
 
-		const isPointingLeft = e.key === 'ArrowLeft' || e.key === 'ArrowDown';
-		const isPointingRight = e.key === 'ArrowRight' || e.key === 'ArrowUp';
+		e.preventDefault();
 
-		if (isPointingLeft || isPointingRight) e.preventDefault();
+		if (!e.altKey && s.snapPoints.length > 0) {
+			let currentIndex = 0;
+			let minDiff = Infinity;
 
-		if (!e.altKey && s.snapPoints) {
-			let next = s.snapPoints.findIndex((n) => n >= s.value);
+			for (let i = 0; i < s.snapPoints.length; i++) {
+				const diff = Math.abs(s.snapPoints[i] - s.value);
+				if (diff < minDiff) {
+					minDiff = diff;
+					currentIndex = i;
+				}
+			}
 
-			next += +isPointingRight;
-			next -= +isPointingLeft;
+			let nextIndex = currentIndex + (isRight ? 1 : -1);
+			nextIndex = clamp(nextIndex, 0, s.snapPoints.length - 1);
 
-			next = clamp(next, 0, s.snapPoints.length - 1);
-
-			s.value = s.snapPoints[next];
+			s.value = s.snapPoints[nextIndex];
 		} else {
-			s.value += +isPointingRight * s.step - +isPointingLeft * s.step;
+			s.value = clamp(s.value + (isRight ? 1 : -1) * s.step);
 		}
-
-		s.value = clamp(s.value);
 	}
 
 	const handleTouchStart = toMobile(handleMouseDown);
