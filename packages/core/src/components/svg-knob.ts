@@ -225,14 +225,14 @@ export function createSvgKnob<E extends HTMLElement>(
 		svg.setAttribute('width', size + 'px');
 		svg.setAttribute('height', size + 'px');
 		svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
-		svg.setAttribute('stroke-width', (size * 0.06).toPrecision(2));
+		svg.setAttribute('stroke-width', (size * 0.06).toString());
 
 		const c = size / 2;
 		const circleRadius = size * state.circleRadius;
 
-		circle.setAttribute('cx', c.toPrecision(2));
-		circle.setAttribute('cy', c.toPrecision(2));
-		circle.setAttribute('r', circleRadius.toPrecision(2));
+		circle.setAttribute('cx', c.toString());
+		circle.setAttribute('cy', c.toString());
+		circle.setAttribute('r', circleRadius.toString());
 	};
 
 	sizeCallback(options.size ?? DEFAULT_SIZE);
@@ -280,10 +280,10 @@ export function createSvgKnob<E extends HTMLElement>(
 				valueToAngle(value, ...angles)
 			);
 
-			indicator.setAttribute('x1', x1.toPrecision(2));
-			indicator.setAttribute('y1', y1.toPrecision(2));
-			indicator.setAttribute('x2', x2.toPrecision(2));
-			indicator.setAttribute('y2', y2.toPrecision(2));
+			indicator.setAttribute('x1', x1.toString());
+			indicator.setAttribute('y1', y1.toString());
+			indicator.setAttribute('x2', x2.toString());
+			indicator.setAttribute('y2', y2.toString());
 		}
 
 		// Arc
