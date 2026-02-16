@@ -47,7 +47,7 @@ export type DraggableOptions = {
 	onSnapPointsChange?: (v: number[]) => void;
 	onSnapThresholdChange?: (v: number) => void;
 	onWeightChange?: (v: number) => void;
-};
+} & DraggableReactive;
 
 type DragStateRaw = Required<DraggableReactive>;
 type DragState = WithSilent<DragStateRaw>;
@@ -71,23 +71,28 @@ export function createDraggable<E extends HTMLElement>(
 	addReactive(
 		s,
 		'value',
-		DEFAULT_KNOB_VALUE,
+		options.value ?? DEFAULT_KNOB_VALUE,
 		(value) => {
 			options.onValueChange?.(value);
 			container.ariaValueNow = value.toPrecision(2);
 		},
 		false
 	);
-	addReactive(s, 'disabled', false, (isDisabled) => {
+	addReactive(s, 'disabled', options.disabled ?? false, (isDisabled) => {
 		options.onDisabledChange?.(isDisabled);
 		container.style.cursor = isDisabled ? 'auto' : 'grab';
 	});
-	addReactive(s, 'defaultValue', DEFAULT_KNOB_VALUE, options.onDefaultValueChange);
-	addReactive(s, 'invertWheel', false, options.onInvertWheelChange);
-	addReactive(s, 'step', DEFAULT_KNOB_STEP, options.onStepChange);
-	addReactive(s, 'snapPoints', [], options.onSnapPointsChange);
-	addReactive(s, 'snapThreshold', DEFAULT_KNOB_SNAP_THRESHOLD, options.onSnapThresholdChange);
-	addReactive(s, 'weight', DEFAULT_KNOB_WEIGHT, options.onWeightChange);
+	addReactive(s, 'defaultValue', options.value ?? DEFAULT_KNOB_VALUE, options.onDefaultValueChange);
+	addReactive(s, 'invertWheel', options.invertWheel ?? false, options.onInvertWheelChange);
+	addReactive(s, 'step', options.step ?? DEFAULT_KNOB_STEP, options.onStepChange);
+	addReactive(s, 'snapPoints', options.snapPoints ?? [], options.onSnapPointsChange);
+	addReactive(
+		s,
+		'snapThreshold',
+		options.snapThreshold ?? DEFAULT_KNOB_SNAP_THRESHOLD,
+		options.onSnapThresholdChange
+	);
+	addReactive(s, 'weight', options.weight ?? DEFAULT_KNOB_WEIGHT, options.onWeightChange);
 
 	Object.freeze(s);
 

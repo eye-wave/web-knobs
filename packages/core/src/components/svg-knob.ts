@@ -83,7 +83,7 @@ export type SvgKnobOptions = DraggableOptions & {
 	onPointerLengthChange?: (v: number) => void;
 	onSizeChange?: (v: number) => void;
 	onSnapPointLengthChange?: (v: number) => void;
-};
+} & SvgKnobReactive;
 
 type SvgStateRaw = Required<SvgKnobReactive>;
 type SvgState = WithSilent<SvgStateRaw>;
@@ -129,34 +129,103 @@ export function createSvgKnob<E extends HTMLElement>(
 		}
 	}) as SvgKnobApi;
 
-	addReactive(state, 'arcRadius', DEFAULT_ARC_RADIUS, options.onArcRadiusChange);
-	addReactive(state, 'bgColor', DEFAULT_BG_COLOR, (color) => {
-		options.onBgColorChange?.(color);
+	addReactive(
+		state,
+		'arcRadius',
+		options.arcRadius ?? DEFAULT_ARC_RADIUS,
+		(r) => {
+			options.onArcRadiusChange?.(r);
+			draw(engine.__state.value);
+		},
+		false
+	);
 
+	const bgColorCallback = (color: string) => {
 		knobArc.setAttribute('stroke', color);
 		snapPoints.setAttribute('stroke', color);
 		circle.setAttribute('fill', color);
-	});
+	};
 
-	addReactive(state, 'circleRadius', DEFAULT_CIRCLE_RADIUS, options.onCircleRadiusChange);
-	addReactive(state, 'disabledColor', DEFAULT_DISABLED_COLOR, (color) => {
-		options.onDisabledColorChange?.(color);
+	bgColorCallback(options.bgColor ?? DEFAULT_BG_COLOR);
+	addReactive(
+		state,
+		'bgColor',
+		options.bgColor ?? DEFAULT_BG_COLOR,
+		(color) => {
+			options.onBgColorChange?.(color);
+			bgColorCallback(color);
+			draw(engine.__state.value);
+		},
+		false
+	);
 
+	addReactive(
+		state,
+		'circleRadius',
+		options.circleRadius ?? DEFAULT_CIRCLE_RADIUS,
+		(r) => {
+			options.onCircleRadiusChange?.(r);
+			draw(engine.__state.value);
+		},
+		false
+	);
+
+	const disabledColorCallback = (color: string) => {
 		const stroke = engine.__state.disabled ? color : 'currentColor';
 
 		knobArcFilled.setAttribute('stroke', stroke);
 		indicator.setAttribute('stroke', stroke);
-	});
-	addReactive(state, 'maxAngle', DEFAULT_MAX_ANGLE, options.onMaxAngleChange);
-	addReactive(state, 'minAngle', DEFAULT_MIN_ANGLE, options.onMinAngleChange);
-	addReactive(state, 'pointerLength', DEFAULT_POINTER_LENGTH, options.onPointerLengthChange);
-	addReactive(state, 'size', DEFAULT_SIZE, (size) => {
-		options.onSizeChange?.(size);
+	};
 
-		svg.setAttribute('width', state.size + 'px');
-		svg.setAttribute('height', state.size + 'px');
-		svg.setAttribute('viewBox', `0 0 ${state.size} ${state.size}`);
-		svg.setAttribute('stroke-width', (state.size * 0.06).toPrecision(2));
+	disabledColorCallback(options.disabledColor ?? DEFAULT_DISABLED_COLOR);
+	addReactive(
+		state,
+		'disabledColor',
+		options.disabledColor ?? DEFAULT_DISABLED_COLOR,
+		(color) => {
+			options.onDisabledColorChange?.(color);
+			disabledColorCallback(color);
+			draw(engine.__state.value);
+		},
+		false
+	);
+
+	addReactive(
+		state,
+		'maxAngle',
+		options.maxAngle ?? DEFAULT_MAX_ANGLE,
+		(a) => {
+			options.onMaxAngleChange?.(a);
+			draw(engine.__state.value);
+		},
+		false
+	);
+	addReactive(
+		state,
+		'minAngle',
+		options.minAngle ?? DEFAULT_MIN_ANGLE,
+		(a) => {
+			options.onMinAngleChange?.(a);
+			draw(engine.__state.value);
+		},
+		false
+	);
+	addReactive(
+		state,
+		'pointerLength',
+		options.pointerLength ?? DEFAULT_POINTER_LENGTH,
+		(pl) => {
+			options.onPointerLengthChange?.(pl);
+			draw(engine.__state.value);
+		},
+		false
+	);
+
+	const sizeCallback = (size: number) => {
+		svg.setAttribute('width', size + 'px');
+		svg.setAttribute('height', size + 'px');
+		svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
+		svg.setAttribute('stroke-width', (size * 0.06).toPrecision(2));
 
 		const c = size / 2;
 		const circleRadius = size * state.circleRadius;
@@ -164,13 +233,35 @@ export function createSvgKnob<E extends HTMLElement>(
 		circle.setAttribute('cx', c.toPrecision(2));
 		circle.setAttribute('cy', c.toPrecision(2));
 		circle.setAttribute('r', circleRadius.toPrecision(2));
-	});
+	};
 
-	addReactive(state, 'snapPointLength', DEFAULT_SNAP_POINT_LENGTH, options.onSnapPointLengthChange);
+	sizeCallback(options.size ?? DEFAULT_SIZE);
+	addReactive(
+		state,
+		'size',
+		options.size ?? DEFAULT_SIZE,
+		(size) => {
+			options.onSizeChange?.(size);
+			sizeCallback(size);
+			draw(engine.__state.value);
+		},
+		false
+	);
+
+	addReactive(
+		state,
+		'snapPointLength',
+		options.snapPointLength ?? DEFAULT_SNAP_POINT_LENGTH,
+		(spl) => {
+			options.onSnapPointLengthChange?.(spl);
+			draw(engine.__state.value);
+		},
+		false
+	);
 
 	Object.freeze(state);
 
-	draw(DEFAULT_KNOB_VALUE);
+	draw(options.value ?? DEFAULT_KNOB_VALUE);
 	function draw(value: number) {
 		const c = state.size / 2;
 		const circleRadius = state.size * state.circleRadius;

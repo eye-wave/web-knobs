@@ -40,14 +40,11 @@ export type ImageKnobApi = DraggableApi & {
 };
 
 export type ImageKnobOptions = DraggableOptions & {
-	src: string;
-	width: number;
-	height: number;
 	onSrcChange?: (v: string) => void;
 	onNumberOfFramesChange?: (v: number | null) => void;
 	onWidthChange?: (v: number) => void;
 	onHeightChange?: (v: number) => void;
-};
+} & ImageKnobReactive;
 
 type ImageStateRaw = Required<ImageKnobReactive>;
 type ImageState = WithSilent<ImageStateRaw>;
@@ -76,19 +73,18 @@ export function createImageKnob<E extends HTMLElement>(
 		image.src = src;
 		container.style.backgroundImage = `url(${src})`;
 	});
-
 	addReactive(state, 'numberOfFrames', null, options.onNumberOfFramesChange);
-
 	addReactive(state, 'width', options.width, (width) => {
 		options.onWidthChange?.(width);
 
 		container.style.width = width + 'px';
+		draw(engine.__state.value);
 	});
-
 	addReactive(state, 'height', options.height, (height) => {
 		options.onHeightChange?.(height);
 
 		container.style.width = height + 'px';
+		draw(engine.__state.value);
 	});
 
 	Object.freeze(state);
@@ -104,7 +100,7 @@ export function createImageKnob<E extends HTMLElement>(
 	container.style.width = options.width + 'px';
 	container.style.height = options.height + 'px';
 
-	draw(DEFAULT_KNOB_VALUE);
+	draw(options.value ?? DEFAULT_KNOB_VALUE);
 	function draw(value: number) {
 		container.style.backgroundPosition = `0 ${-transform(value) * state.height}px`;
 	}
