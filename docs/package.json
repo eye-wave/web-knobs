@@ -1,5 +1,6 @@
 {
-	"name": "docs",
+	"private": true,
+	"name": "@web-knobs/docs",
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
