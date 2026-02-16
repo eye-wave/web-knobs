@@ -1,8 +1,6 @@
 ---
 import Layout from '../layout.astro';
-import examples from './_examples';
-
-import RenderSvelte from '../lib/Render.svelte';
+import pkg from '../../../packages/web-knobs/package.json';
 
 const logos = [
 	[
@@ -27,10 +25,10 @@ const logos = [
 ];
 ---
 
-<Layout>
+<Layout title="web-knobs">
 	<section style="display:flex;justify-content:space-between">
 		<article>
-			<h1>Welcome to web-knobs<span style="font-size:12px">v0.0.1</span></h1>
+			<h1>Welcome to web-knobs<span style="font-size:12px">v{pkg.version}</span></h1>
 
 			<p>Cross-framework audio component library!</p>
 		</article>
