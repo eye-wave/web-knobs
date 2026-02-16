@@ -112,7 +112,7 @@
     },
     "packages/web-knobs": {
       "name": "@eyewave/web-knobs",
-      "version": "0.0.1",
+      "version": "0.0.3",
       "peerDependencies": {
         "react": "^19.2.0",
         "svelte": "^5.45.6",
@@ -1603,6 +1603,8 @@
     "boxen/chalk": ["chalk@5.6.2", "", {}, "sha512-7NzBL0rN6fMUW+f7A6Io4h40qQlG+xGmtMxfbnH/K7TAtt8JQWVQK+6g0UXKMeVJoyV5EkkNsErQ8pVD3bLHbA=="],
 
     "csso/css-tree": ["css-tree@2.2.1", "", { "dependencies": { "mdn-data": "2.0.28", "source-map-js": "^1.0.1" } }, "sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA=="],
+
+    "docs/@eyewave/web-knobs": ["@eyewave/web-knobs@0.0.1", "", { "peerDependencies": { "react": "^19.2.0", "svelte": "^5.45.6", "typescript": "~5.9.3", "vue": "^3.5.27" } }, "sha512-bEJ3/l/nm2M5BxQf/RpGXmM/pWIAE6lQ++BrP/B3a6qu0XK7i1ygp014kXecqAZ0wF4teEe32FMCyxmum8gLAw=="],
 
     "dom-serializer/entities": ["entities@4.5.0", "", {}, "sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw=="],
 
