@@ -1,6 +1,6 @@
 {
 	"name": "@eyewave/web-knobs",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"license": "MIT",
 	"description": "Component library with audio related UI",
 	"repository": {
@@ -30,15 +30,15 @@
 			"types": "./dist/core/index.d.ts"
 		},
 		"./core/params": {
-			"import": "./dist/core/params.js",
+			"default": "./dist/core/params.js",
 			"types": "./dist/core/params.d.ts"
 		},
 		"./core/helpers": {
-			"import": "./dist/core/helpers.js",
+			"default": "./dist/core/helpers.js",
 			"types": "./dist/core/helpers.d.ts"
 		},
 		"./core/draggable": {
-			"import": "./dist/core/draggable.js",
+			"default": "./dist/core/draggable.js",
 			"types": "./dist/core/draggable.d.ts"
 		},
 		"./core/components/svg-knob": {
