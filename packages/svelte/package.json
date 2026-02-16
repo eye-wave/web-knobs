@@ -1,8 +1,8 @@
 {
+	"private": true,
 	"name": "@web-knobs/svelte",
 	"version": "0.0.1",
 	"type": "module",
-	"private": true,
 	"scripts": {
 		"dev": "vite dev",
 		"build": "svelte-package && publint",

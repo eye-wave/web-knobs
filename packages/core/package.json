@@ -1,6 +1,6 @@
 {
-	"name": "@web-knobs/core",
 	"private": true,
+	"name": "@web-knobs/core",
 	"version": "0.0.1",
 	"type": "module",
 	"exports": {

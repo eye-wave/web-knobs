@@ -2,7 +2,7 @@
 	"name": "@eyewave/web-knobs",
 	"version": "0.0.3",
 	"license": "MIT",
-	"description": "Component library with audio related UI",
+	"description": " Cross-framework component library for building audio software on the web.",
 	"repository": {
 		"url": "git+https://github.com/eye-wave/svelte-knobs.git"
 	},
