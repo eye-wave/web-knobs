@@ -1,14 +1,14 @@
 import { Param } from './base';
 
 export class LogParam extends Param<number> {
-	// @ts-expect-error
+	// @ts-expect-error this value is initialized in the constructor
 	#min: number;
-	// @ts-expect-error
+	// @ts-expect-error this value is initialized in the constructor
 	#max: number;
 
-	// @ts-expect-error
+	// @ts-expect-error this value is initialized in the constructor
 	#logMin: number;
-	// @ts-expect-error
+	// @ts-expect-error this value is initialized in the constructor
 	#logMax: number;
 
 	#logBase = Math.E;

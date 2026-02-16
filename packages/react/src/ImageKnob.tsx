@@ -104,6 +104,7 @@ export default function ImageKnob({
 			src,
 			width,
 			height,
+			numberOfFrames,
 			onValueChange: callbacksRef.current?.onValueChange,
 			onDisabledChange: callbacksRef.current?.onDisabledChange,
 			onDefaultValueChange: callbacksRef.current?.onDefaultValueChange,

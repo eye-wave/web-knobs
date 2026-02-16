@@ -3,7 +3,8 @@ export type WithSilent<T> = T & {
 };
 
 export function addReactive<T>(
-	// biome-ignore lint/suspicious/noExplicitAny: this 'any' is safe, special types are overriding it later in the code
+	// this 'any' is safe, special types are overriding it later in the code
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	api: any,
 	fieldName: string,
 	init: T,
@@ -28,5 +29,6 @@ export function addReactive<T>(
 		value = v;
 	};
 
+	// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 	instantCall && callback?.(init);
 }

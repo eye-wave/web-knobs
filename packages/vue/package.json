@@ -23,7 +23,10 @@
 		"vite": "beta",
 		"vue-tsc": "^3.2.4"
 	},
-	"files": ["src", "dist"],
+	"files": [
+		"src",
+		"dist"
+	],
 	"module": "./dist/index.js",
 	"exports": {
 		".": {

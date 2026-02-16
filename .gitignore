@@ -1,6 +1,7 @@
 node_modules
 
 # Output
+.astro/
 .svelte-kit/
 build/
 dist/

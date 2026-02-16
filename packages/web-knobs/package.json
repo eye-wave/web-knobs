@@ -1,34 +1,78 @@
 {
 	"name": "@eyewave/web-knobs",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"license": "MIT",
 	"description": "Component library with audio related UI",
 	"repository": {
 		"url": "git+https://github.com/eye-wave/svelte-knobs.git"
 	},
-	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*"],
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*",
+		"**/*.d.ts"
+	],
 	"author": {
 		"name": "_eyewave",
 		"email": "89079979+eye-wave@users.noreply.github.com"
 	},
+	"peerDependencies": {
+		"react": "^19.2.0",
+		"svelte": "^5.45.6",
+		"typescript": "~5.9.3",
+		"vue": "^3.5.27"
+	},
+	"types": "./types.d.ts",
 	"exports": {
 		"./core": {
-			"import": "./dist/core/index.js",
+			"default": "./dist/core/index.js",
+			"browser": "./dist/core/index.js",
 			"types": "./dist/core/index.d.ts"
 		},
+		"./core/params": {
+			"import": "./dist/core/params.js",
+			"types": "./dist/core/params.d.ts"
+		},
+		"./core/helpers": {
+			"import": "./dist/core/helpers.js",
+			"types": "./dist/core/helpers.d.ts"
+		},
+		"./core/draggable": {
+			"import": "./dist/core/draggable.js",
+			"types": "./dist/core/draggable.d.ts"
+		},
+		"./core/components/svg-knob": {
+			"default": "./dist/core/components/svg-knob.js",
+			"browser": "./dist/core/components/svg-knob.js",
+			"types": "./dist/core/components/svg-knob.d.ts"
+		},
+		"./core/components/image-knob": {
+			"default": "./dist/core/components/image-knob.js",
+			"browser": "./dist/core/components/image-knob.js",
+			"types": "./dist/core/components/image-knob.d.ts"
+		},
 		"./svelte": {
-			"import": "./dist/svelte/index.js",
+			"default": "./dist/svelte/index.js",
+			"browser": "./dist/svelte/index.js",
 			"svelte": "./dist/svelte/index.js",
 			"types": "./dist/svelte/index.d.ts"
 		},
 		"./react": {
-			"import": "./dist/react/index.js",
+			"default": "./dist/react/index.js",
+			"browser": "./dist/react/index.js",
 			"types": "./dist/react/index.d.ts"
 		},
 		"./vue": {
-			"import": "./dist/vue/index.js",
+			"default": "./dist/vue/index.js",
+			"browser": "./dist/vue/index.js",
 			"types": "./dist/vue/types/index.d.ts"
 		}
 	},
-	"keywords": ["vue", "svelte", "react", "audio", "knobs"]
+	"keywords": [
+		"vue",
+		"svelte",
+		"react",
+		"audio",
+		"knobs"
+	]
 }

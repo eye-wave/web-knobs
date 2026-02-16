@@ -21,7 +21,6 @@
 	import { onDestroy, onMount } from 'svelte';
 
 	let {
-		children,
 		value = $bindable(DEFAULT_KNOB_VALUE),
 		disabled: isDisabled = false,
 		defaultValue = DEFAULT_KNOB_VALUE,

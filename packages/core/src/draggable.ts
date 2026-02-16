@@ -275,6 +275,7 @@ function toMobile(
 		const clientY = touch.clientY;
 		const clientX = touch.clientX;
 
+		// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 		handler({ clientY, clientX } as MouseEvent) && event.preventDefault();
 	};
 }
