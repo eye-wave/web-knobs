@@ -29,5 +29,6 @@
 	},
 	"keywords": [
 		"svelte"
-	]
+	],
+	"license": "MIT"
 }

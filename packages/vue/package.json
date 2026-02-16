@@ -33,5 +33,6 @@
 			"types": "./dist/types/index.d.ts",
 			"import": "./dist/index.js"
 		}
-	}
+	},
+	"license": "MIT"
 }
