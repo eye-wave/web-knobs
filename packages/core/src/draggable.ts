@@ -146,32 +146,23 @@ export function createDraggable<E extends HTMLElement>(
 		return true;
 	}
 
-	let wasHorizontal = true;
-
 	function handleMouseMove({ clientY, clientX, altKey }: MouseEvent): boolean {
 		if (s.disabled || !isDragging) return false;
+
 		shield.show();
 
+		const dx = clientX - startX;
 		const dy = startY - clientY;
-		const dx = -(startX - clientX);
 
-		const isHorizontal = Math.abs(dx) > Math.abs(dy);
+		const delta = dy + dx * 0.5;
 
-		if (isHorizontal !== wasHorizontal) {
-			startX = clientX;
-			startY = clientY;
-			startValue = s.value;
-		}
-
-		wasHorizontal = isHorizontal;
-
-		const delta = isHorizontal ? dx : dy;
 		const deltaValue = delta / s.weight;
+		const nextValue = startValue + deltaValue;
 
-		if (!altKey && s.snapPoints) {
-			s.value = clamp(snap(startValue + deltaValue, s.snapPoints));
+		if (!altKey && s.snapPoints.length > 0) {
+			s.value = clamp(snap(nextValue, s.snapPoints));
 		} else {
-			s.value = clamp(startValue + deltaValue);
+			s.value = clamp(nextValue);
 		}
 
 		return true;
