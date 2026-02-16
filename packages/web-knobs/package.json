@@ -1,6 +1,6 @@
 {
 	"name": "@eyewave/web-knobs",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"license": "MIT",
 	"description": "Component library with audio related UI",
 	"repository": {
