@@ -1,0 +1,80 @@
+---
+import type { CodeLanguage } from 'astro';
+import { Code as AstroCode } from 'astro:components';
+import { hash } from 'node:crypto';
+
+type Tab = {
+	name: string;
+	code: string;
+	lang?: CodeLanguage;
+};
+
+type Props = {
+	tabs: Tab[];
+};
+
+const { tabs } = Astro.props;
+
+const formId = hash('md5', JSON.stringify(tabs), 'base64url').slice(0, 5);
+const localId = (name: string) => `${formId}_${name}`;
+---
+
+<div class="code-tabs">
+	{
+		tabs.map((tab, i) => (
+			<input
+				type="radio"
+				name={formId}
+				id={localId(tab.name)}
+				class="tab-input"
+				checked={i === 0}
+			/>
+		))
+	}
+
+	<div class="tab-bar">
+		{tabs.map((tab) => <label for={localId(tab.name)}>{tab.name}</label>)}
+	</div>
+
+	{tabs.map((tab) => <AstroCode class="tab-code" code={tab.code} lang={tab.lang} />)}
+</div>
+
+<style>
+	.tab-bar {
+		font-size: 0;
+	}
+
+	input {
+		display: none;
+	}
+
+	label {
+		cursor: pointer;
+		font-size: 14px;
+		background: #333;
+		padding: 2px 8px;
+	}
+
+	.tab-code {
+		display: none;
+		padding: 16px;
+		border-radius: 8px;
+    tab-size: 2;
+		user-select: all;
+		font-size: 14px;
+	}
+
+	.code-tabs > input:nth-of-type(1):checked ~ .tab-code:nth-of-type(1),
+	.code-tabs > input:nth-of-type(2):checked ~ .tab-code:nth-of-type(2),
+	.code-tabs > input:nth-of-type(3):checked ~ .tab-code:nth-of-type(3),
+	.code-tabs > input:nth-of-type(4):checked ~ .tab-code:nth-of-type(4) {
+		display: block;
+	}
+
+	.code-tabs > input:nth-of-type(1):checked ~ .tab-bar label:nth-of-type(1),
+	.code-tabs > input:nth-of-type(2):checked ~ .tab-bar label:nth-of-type(2),
+	.code-tabs > input:nth-of-type(3):checked ~ .tab-bar label:nth-of-type(3),
+	.code-tabs > input:nth-of-type(4):checked ~ .tab-bar label:nth-of-type(4) {
+		color: cyan;
+	}
+</style>
