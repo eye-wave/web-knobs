@@ -1,5 +1,5 @@
 import { clamp } from './helpers';
-import { addReactive, type WithSilent } from './helpers/reactive';
+import { addReactive } from './helpers/reactive';
 
 export const DEFAULT_KNOB_VALUE = 0.5;
 export const DEFAULT_KNOB_STEP = 0.05;
@@ -49,8 +49,7 @@ export type DraggableOptions = {
 	onWeightChange?: (v: number) => void;
 } & DraggableReactive;
 
-type DragStateRaw = Required<DraggableReactive>;
-type DragState = WithSilent<DragStateRaw>;
+type DragState = Required<DraggableReactive>;
 
 /** Creates a Knob API inside an existing HTML element */
 export function createDraggable<E extends HTMLElement>(
@@ -233,14 +232,14 @@ export function createDraggable<E extends HTMLElement>(
 			return s;
 		},
 		destroy,
-		setValue: (v) => s.valueSilent(v),
-		setDisabled: (v) => s.disabledSilent(v),
-		setDefaultValue: (v) => s.defaultValueSilent(v),
-		setInvertWheel: (v) => s.invertWheelSilent(v),
-		setStep: (v) => s.stepSilent(v),
-		setSnapPoints: (v) => s.snapPointsSilent(v),
-		setSnapThreshold: (v) => s.snapThresholdSilent(v),
-		setWeight: (v) => s.weightSilent(v)
+		setValue: (v) => (s.value = v),
+		setDisabled: (v) => (s.disabled = v),
+		setDefaultValue: (v) => (s.defaultValue = v),
+		setInvertWheel: (v) => (s.invertWheel = v),
+		setStep: (v) => (s.step = v),
+		setSnapPoints: (v) => (s.snapPoints = v),
+		setSnapThreshold: (v) => (s.snapThreshold = v),
+		setWeight: (v) => (s.weight = v)
 	};
 }
 

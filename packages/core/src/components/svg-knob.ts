@@ -4,13 +4,7 @@ import {
 	type DraggableApi,
 	type DraggableOptions
 } from '../draggable';
-import {
-	addReactive,
-	describeArc,
-	polarToCartesian,
-	valueToAngle,
-	type WithSilent
-} from '../helpers';
+import { addReactive, describeArc, polarToCartesian, valueToAngle } from '../helpers';
 
 export const DEFAULT_SIZE = 80;
 export const DEFAULT_BG_COLOR = '#333';
@@ -85,8 +79,7 @@ export type SvgKnobOptions = DraggableOptions & {
 	onSnapPointLengthChange?: (v: number) => void;
 } & SvgKnobReactive;
 
-type SvgStateRaw = Required<SvgKnobReactive>;
-type SvgState = WithSilent<SvgStateRaw>;
+type SvgState = Required<SvgKnobReactive>;
 
 export function createSvgKnob<E extends HTMLElement>(
 	container: E,
@@ -327,15 +320,15 @@ export function createSvgKnob<E extends HTMLElement>(
 		}
 	});
 
-	engine.setArcRadius = (v) => state.arcRadiusSilent(v);
-	engine.setBgColor = (v) => state.bgColorSilent(v);
-	engine.setCircleRadius = (v) => state.circleRadiusSilent(v);
-	engine.setDisabledColor = (v) => state.disabledColorSilent(v);
-	engine.setMaxAngle = (v) => state.maxAngleSilent(v);
-	engine.setMinAngle = (v) => state.minAngleSilent(v);
-	engine.setPointerLength = (v) => state.pointerLengthSilent(v);
-	engine.setSize = (v) => state.sizeSilent(v);
-	engine.setSnapPointLength = (v) => state.snapPointLengthSilent(v);
+	engine.setArcRadius = (v) => (state.arcRadius = v);
+	engine.setBgColor = (v) => (state.bgColor = v);
+	engine.setCircleRadius = (v) => (state.circleRadius = v);
+	engine.setDisabledColor = (v) => (state.disabledColor = v);
+	engine.setMaxAngle = (v) => (state.maxAngle = v);
+	engine.setMinAngle = (v) => (state.minAngle = v);
+	engine.setPointerLength = (v) => (state.pointerLength = v);
+	engine.setSize = (v) => (state.size = v);
+	engine.setSnapPointLength = (v) => (state.snapPointLength = v);
 
 	return engine;
 }

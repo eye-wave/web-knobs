@@ -112,14 +112,14 @@ const logos = [
 		const [arcFull, arc, logo] = el.querySelectorAll('svg path')!;
 		const val = Math.random();
 
-		arcFull.setAttribute('d', describeArc(12, 12, 10, 1, -135, 135));
+		arcFull?.setAttribute('d', describeArc(12, 12, 10, 1, -135, 135));
 
 		draw(val);
 		function draw(v: number) {
 			const angle = valueToAngle(v, 0, 180);
 
-			arc.setAttribute('d', describeArc(12, 12, 10, v, -135, 135));
-			logo.setAttribute(
+			arc?.setAttribute('d', describeArc(12, 12, 10, v, -135, 135));
+			logo?.setAttribute(
 				'transform',
 				`translate(12 12) scale(0.5) translate(-12 -12) rotate(${angle} 12 12)`
 			);

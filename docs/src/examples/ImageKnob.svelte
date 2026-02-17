@@ -4,4 +4,4 @@
 	let value = $state(0.0);
 </script>
 
-<ImageKnob bind:value src="/PurpleKnob2.webp" width={90} height={90} />
+<ImageKnob bind:value src="/web-knobs/PurpleKnob2.webp" width={90} height={90} />

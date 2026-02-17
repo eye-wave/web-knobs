@@ -4,7 +4,7 @@ import {
 	type DraggableApi,
 	type DraggableOptions
 } from '../draggable';
-import { addReactive, type WithSilent } from '../helpers';
+import { addReactive } from '../helpers';
 
 export type ImageKnobReactive = {
 	/**
@@ -46,8 +46,7 @@ export type ImageKnobOptions = DraggableOptions & {
 	onHeightChange?: (v: number) => void;
 } & ImageKnobReactive;
 
-type ImageStateRaw = Required<ImageKnobReactive>;
-type ImageState = WithSilent<ImageStateRaw>;
+type ImageState = Required<ImageKnobReactive>;
 
 export function createImageKnob<E extends HTMLElement>(
 	container: E,
@@ -67,28 +66,6 @@ export function createImageKnob<E extends HTMLElement>(
 		}
 	};
 
-	addReactive(state, 'src', options.src, (src) => {
-		options.onSrcChange?.(src);
-
-		image.src = src;
-		container.style.backgroundImage = `url(${src})`;
-	});
-	addReactive(state, 'numberOfFrames', null, options.onNumberOfFramesChange);
-	addReactive(state, 'width', options.width, (width) => {
-		options.onWidthChange?.(width);
-
-		container.style.width = width + 'px';
-		draw(engine.__state.value);
-	});
-	addReactive(state, 'height', options.height, (height) => {
-		options.onHeightChange?.(height);
-
-		container.style.width = height + 'px';
-		draw(engine.__state.value);
-	});
-
-	Object.freeze(state);
-
 	const engine = createDraggable(container, {
 		...options,
 		onValueChange(v) {
@@ -96,6 +73,40 @@ export function createImageKnob<E extends HTMLElement>(
 			draw(v);
 		}
 	}) as ImageKnobApi;
+
+	addReactive(state, 'src', options.src, (src) => {
+		options.onSrcChange?.(src);
+
+		image.src = src;
+		container.style.backgroundImage = `url(${src})`;
+	});
+	addReactive(state, 'numberOfFrames', null, options.onNumberOfFramesChange);
+	addReactive(
+		state,
+		'width',
+		options.width,
+		(width) => {
+			options.onWidthChange?.(width);
+
+			container.style.width = width + 'px';
+			draw(engine.__state.value);
+		},
+		false
+	);
+	addReactive(
+		state,
+		'height',
+		options.height,
+		(height) => {
+			options.onHeightChange?.(height);
+
+			container.style.width = height + 'px';
+			draw(engine.__state.value);
+		},
+		false
+	);
+
+	Object.freeze(state);
 
 	container.style.width = options.width + 'px';
 	container.style.height = options.height + 'px';
@@ -111,10 +122,10 @@ export function createImageKnob<E extends HTMLElement>(
 		}
 	});
 
-	engine.setSrc = (v) => state.srcSilent(v);
-	engine.setNumberOfFrames = (v) => state.numberOfFramesSilent(v);
-	engine.setWidth = (v) => state.widthSilent(v);
-	engine.setHeight = (v) => state.heightSilent(v);
+	engine.setSrc = (v) => (state.src = v);
+	engine.setNumberOfFrames = (v) => (state.numberOfFrames = v);
+	engine.setWidth = (v) => (state.width = v);
+	engine.setHeight = (v) => (state.height = v);
 
 	return engine;
 }
