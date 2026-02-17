@@ -10,7 +10,7 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@eyewave/web-knobs": "^0.0.1",
+		"@eyewave/web-knobs": "workspace:*",
 		"@lucide/astro": "^0.564.0",
 		"astro": "^5.17.2",
 		"lucide": "^0.564.0",

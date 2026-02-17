@@ -1,6 +1,7 @@
-import { statSync } from 'node:fs';
+import { statSync, cpSync } from 'node:fs';
 import * as fs from 'node:fs/promises';
 import * as path from 'node:path';
+import { spawn } from 'node:child_process';
 
 const root = path.resolve(import.meta.dirname);
 const destinationRoot = path.join(root, 'dist');
@@ -16,13 +17,29 @@ const packages = (await fs.readdir(path.join(root, '..'), 'utf8'))
 
 console.log('Found packages:', packages.join(', '), '\n');
 
-for (const name of packages) {
-	const source = path.join(root, '..', name, 'dist');
-	const dest = path.join(destinationRoot, name);
+async function buildPackage(name: string) {
+	const packagePath = path.join(root, '..', name);
+	console.log('Building', name, '...');
 
-	await fs.cp(source, dest, { recursive: true });
-	console.log('Copied', name);
+	return new Promise<void>((resolve, reject) => {
+		const proc = spawn('bun', ['run', 'build'], { cwd: packagePath, stdio: 'inherit' });
+
+		proc.on('error', reject);
+		proc.on('close', (code) => {
+			if (code === 0) {
+				const source = path.join(packagePath, 'dist');
+				const dest = path.join(destinationRoot, name);
+
+				cpSync(source, dest, { recursive: true });
+				console.log('Copied', name);
+
+				resolve();
+			} else reject(new Error(`build failed with ${code}`));
+		});
+	});
 }
+
+await Promise.all(packages.map(buildPackage));
 
 const files = (
 	await fs.readdir(destinationRoot, {

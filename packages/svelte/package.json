@@ -11,8 +11,17 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
 	"dependencies": {
 		"@web-knobs/core": "workspace:*"
+	},
+	"peerDependencies": {
+		"svelte": "^5.45.6"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^7.0.0",
@@ -22,13 +31,9 @@
 		"@types/node": "^24",
 		"globals": "^16.5.0",
 		"publint": "^0.3.15",
-		"svelte": "^5.45.6",
 		"svelte-check": "^4.3.4",
 		"typescript": "^5.9.3",
 		"vite": "^7.2.6"
 	},
-	"keywords": [
-		"svelte"
-	],
 	"license": "MIT"
 }
