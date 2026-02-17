@@ -60,6 +60,23 @@
 	onMount(() => {
 		if (ref)
 			engine = createSvgKnob(ref, {
+				value,
+				disabled: isDisabled,
+				defaultValue,
+				invertWheel,
+				step,
+				snapPoints,
+				snapThreshold,
+				weight,
+				arcRadius,
+				bgColor,
+				circleRadius,
+				disabledColor,
+				maxAngle,
+				minAngle,
+				pointerLength,
+				size,
+				snapPointLength,
 				onValueChange: (v) => (value = v),
 				onDisabledChange: (v) => (isDisabled = v),
 				onDefaultValueChange: (v) => (defaultValue = v),

@@ -41,6 +41,14 @@ const engine = ref<DraggableApi | null>(null);
 onMounted(() => {
 	if (divRef.value) {
 		engine.value = createDraggable(divRef.value, {
+			value: props.value,
+			disabled: props.disabled,
+			defaultValue: props.defaultValue,
+			invertWheel: props.invertWheel,
+			step: props.step,
+			snapPoints: props.snapPoints,
+			snapThreshold: props.snapThreshold,
+			weight: props.weight,
 			onValueChange: (v) => emit('update:modelValue', v),
 			onDisabledChange: (v) => emit('update:disabled', v),
 			onDefaultValueChange: (v) => emit('update:defaultValue', v),

@@ -21,19 +21,19 @@
 		"@web-knobs/core": "workspace:*"
 	},
 	"peerDependencies": {
-		"svelte": "^5.45.6"
+		"svelte": "^5.51.3"
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "^7.0.0",
-		"@sveltejs/kit": "^2.49.1",
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/kit": "^2.52.0",
 		"@sveltejs/package": "^2.5.7",
-		"@sveltejs/vite-plugin-svelte": "^6.2.1",
-		"@types/node": "^24",
-		"globals": "^16.5.0",
-		"publint": "^0.3.15",
-		"svelte-check": "^4.3.4",
+		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"@types/node": "^25",
+		"globals": "^17.3.0",
+		"publint": "^0.3.17",
+		"svelte-check": "^4.4.0",
 		"typescript": "^5.9.3",
-		"vite": "^7.2.6"
+		"vite": "^7.3.1"
 	},
 	"license": "MIT"
 }

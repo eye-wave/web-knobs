@@ -125,6 +125,23 @@ export default function SvgKnob({
 		containerRef.current.innerHTML = '';
 
 		engineRef.current = createSvgKnob(containerRef.current, {
+			value,
+			disabled,
+			defaultValue,
+			invertWheel,
+			step,
+			snapPoints,
+			snapThreshold,
+			weight,
+			arcRadius,
+			bgColor,
+			circleRadius,
+			disabledColor,
+			maxAngle,
+			minAngle,
+			pointerLength,
+			size,
+			snapPointLength,
 			onValueChange: callbacksRef.current?.onValueChange,
 			onDisabledChange: callbacksRef.current?.onDisabledChange,
 			onDefaultValueChange: callbacksRef.current?.onDefaultValueChange,

@@ -32,7 +32,7 @@ export const examples: Entry[] = [
 	},
 	{
 		name: 'Custom knob',
-		description: `In reality, svgknob and image knob are both based from a <code>{'<Draggable/>'}</code> component, that you can use as well, creating your very own custom made knob.`,
+		description: `In reality, svgknob and image knob are both based from a <code>&lt;Draggable/&gt;</code> component, that you can use as well, creating your very own custom made knob.`,
 		comp: r(await import('../examples/CustomKnob.astro')),
 		code: [
 			r(await import('../examples/CustomKnob.svelte?raw')),

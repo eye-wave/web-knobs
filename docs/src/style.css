@@ -5,6 +5,7 @@ body {
 	color: #eee;
 	font-family: monospace;
 	font-size: 18px;
+	padding: 0 24px;
 }
 
 hr {
@@ -13,7 +14,7 @@ hr {
 
 p code {
 	font-style: italic;
-	font-size: 16px;
+	font-size: 14px;
 	background: #222;
 	border-radius: 8px;
 	padding: 2px 4px;

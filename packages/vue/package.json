@@ -10,13 +10,13 @@
 		"type-check": "vue-tsc --build"
 	},
 	"dependencies": {
-		"vue": "^3.5.27",
+		"vue": "^3.5.28",
 		"@web-knobs/core": "workspace:*"
 	},
 	"devDependencies": {
 		"@tsconfig/node24": "^24.0.4",
-		"@types/node": "^24.10.9",
-		"@vitejs/plugin-vue": "^6.0.3",
+		"@types/node": "^25.2.3",
+		"@vitejs/plugin-vue": "^6.0.4",
 		"@vue/tsconfig": "^0.8.1",
 		"typescript": "~5.9.3",
 		"unplugin-isolated-decl": "^0.15.7",

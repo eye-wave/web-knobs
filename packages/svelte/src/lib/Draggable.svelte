@@ -36,6 +36,14 @@
 	onMount(() => {
 		if (ref)
 			engine = createDraggable(ref, {
+				value,
+				disabled: isDisabled,
+				defaultValue,
+				invertWheel,
+				step,
+				snapPoints,
+				snapThreshold,
+				weight,
 				onValueChange: (v) => (value = v),
 				onDisabledChange: (v) => (isDisabled = v),
 				onDefaultValueChange: (v) => (defaultValue = v),

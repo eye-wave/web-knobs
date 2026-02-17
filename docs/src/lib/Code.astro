@@ -61,20 +61,28 @@ const localId = (name: string) => `${formId}_${name}`;
 		border-radius: 8px;
 		tab-size: 2;
 		user-select: all;
-		font-size: 14px;
+		font-size: 12px;
 	}
 
 	.code-tabs > input:nth-of-type(1):checked ~ .tab-code:nth-of-type(1),
 	.code-tabs > input:nth-of-type(2):checked ~ .tab-code:nth-of-type(2),
 	.code-tabs > input:nth-of-type(3):checked ~ .tab-code:nth-of-type(3),
-	.code-tabs > input:nth-of-type(4):checked ~ .tab-code:nth-of-type(4) {
+	.code-tabs > input:nth-of-type(4):checked ~ .tab-code:nth-of-type(4),
+	.code-tabs > input:nth-of-type(5):checked ~ .tab-code:nth-of-type(5),
+	.code-tabs > input:nth-of-type(6):checked ~ .tab-code:nth-of-type(6),
+	.code-tabs > input:nth-of-type(7):checked ~ .tab-code:nth-of-type(7),
+	.code-tabs > input:nth-of-type(8):checked ~ .tab-code:nth-of-type(8) {
 		display: block;
 	}
 
 	.code-tabs > input:nth-of-type(1):checked ~ .tab-bar label:nth-of-type(1),
 	.code-tabs > input:nth-of-type(2):checked ~ .tab-bar label:nth-of-type(2),
 	.code-tabs > input:nth-of-type(3):checked ~ .tab-bar label:nth-of-type(3),
-	.code-tabs > input:nth-of-type(4):checked ~ .tab-bar label:nth-of-type(4) {
+	.code-tabs > input:nth-of-type(4):checked ~ .tab-bar label:nth-of-type(4),
+	.code-tabs > input:nth-of-type(5):checked ~ .tab-bar label:nth-of-type(5),
+	.code-tabs > input:nth-of-type(6):checked ~ .tab-bar label:nth-of-type(6),
+	.code-tabs > input:nth-of-type(7):checked ~ .tab-bar label:nth-of-type(7),
+	.code-tabs > input:nth-of-type(8):checked ~ .tab-bar label:nth-of-type(8) {
 		color: cyan;
 	}
 </style>

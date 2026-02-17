@@ -71,6 +71,14 @@ export default function Draggable({
 		containerRef.current.innerHTML = '';
 
 		engineRef.current = createDraggable(containerRef.current, {
+			value,
+			disabled,
+			defaultValue,
+			invertWheel,
+			step,
+			snapPoints,
+			snapThreshold,
+			weight,
 			onValueChange: callbacksRef.current?.onValueChange,
 			onDisabledChange: callbacksRef.current?.onDisabledChange,
 			onDefaultValueChange: callbacksRef.current?.onDefaultValueChange,

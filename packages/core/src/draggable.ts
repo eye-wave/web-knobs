@@ -77,7 +77,7 @@ export function createDraggable<E extends HTMLElement>(
 		},
 		false
 	);
-	addReactive(s, 'disabled', options.disabled ?? false, (isDisabled) => {
+	addReactive(s, 'disabled', options.disabled || false, (isDisabled) => {
 		options.onDisabledChange?.(isDisabled);
 		container.style.cursor = isDisabled ? 'auto' : 'grab';
 	});

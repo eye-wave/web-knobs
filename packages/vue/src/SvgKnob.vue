@@ -18,7 +18,6 @@ import {
 	DEFAULT_KNOB_STEP,
 	DEFAULT_KNOB_VALUE,
 	DEFAULT_KNOB_WEIGHT,
-	type DraggableApi,
 	type DraggableReactive
 } from '@web-knobs/core/draggable';
 import { ref, watch, onMounted, onUnmounted } from 'vue';
@@ -74,6 +73,23 @@ const engine = ref<SvgKnobApi | null>(null);
 onMounted(() => {
 	if (divRef.value) {
 		engine.value = createSvgKnob(divRef.value, {
+			value: props.value,
+			disabled: props.disabled,
+			defaultValue: props.defaultValue,
+			invertWheel: props.invertWheel,
+			step: props.step,
+			snapPoints: props.snapPoints,
+			snapThreshold: props.snapThreshold,
+			weight: props.weight,
+			arcRadius: props.arcRadius,
+			bgColor: props.bgColor,
+			circleRadius: props.circleRadius,
+			disabledColor: props.disabledColor,
+			maxAngle: props.maxAngle,
+			minAngle: props.minAngle,
+			pointerLength: props.pointerLength,
+			size: props.size,
+			snapPointLength: props.snapPointLength,
 			onValueChange: (v) => emit('update:modelValue', v),
 			onDisabledChange: (v) => emit('update:disabled', v),
 			onDefaultValueChange: (v) => emit('update:defaultValue', v),
