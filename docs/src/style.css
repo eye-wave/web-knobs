@@ -10,3 +10,11 @@ body {
 hr {
 	margin: 80px 0;
 }
+
+p code {
+	font-style: italic;
+	font-size: 16px;
+	background: #222;
+	border-radius: 8px;
+	padding: 2px 4px;
+}

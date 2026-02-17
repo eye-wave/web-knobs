@@ -16,8 +16,8 @@ export const examples: Entry[] = [
 		comp: r(await import('../examples/BasicKnob.astro')),
 		code: [
 			r(await import('../examples/BasicKnob.svelte?raw')),
-			r(await import('../examples/BasicKnob.svelte?raw')),
-			r(await import('../examples/BasicKnob.svelte?raw'))
+			r(await import('../examples/BasicKnob.tsx?raw')),
+			r(await import('../examples/BasicKnob.vue?raw'))
 		]
 	},
 	{
@@ -26,8 +26,8 @@ export const examples: Entry[] = [
 		comp: r(await import('../examples/ImageKnob.astro')),
 		code: [
 			r(await import('../examples/ImageKnob.svelte?raw')),
-			r(await import('../examples/ImageKnob.svelte?raw')),
-			r(await import('../examples/ImageKnob.svelte?raw'))
+			r(await import('../examples/ImageKnob.tsx?raw')),
+			r(await import('../examples/ImageKnob.vue?raw'))
 		]
 	},
 	{
@@ -36,8 +36,8 @@ export const examples: Entry[] = [
 		comp: r(await import('../examples/CustomKnob.astro')),
 		code: [
 			r(await import('../examples/CustomKnob.svelte?raw')),
-			r(await import('../examples/CustomKnob.svelte?raw')),
-			r(await import('../examples/CustomKnob.svelte?raw'))
+			r(await import('../examples/CustomKnob.tsx?raw')),
+			r(await import('../examples/CustomKnob.vue?raw'))
 		]
 	},
 	{
@@ -46,8 +46,8 @@ export const examples: Entry[] = [
 		comp: r(await import('../examples/ParamKnob.astro')),
 		code: [
 			r(await import('../examples/ParamKnob.svelte?raw')),
-			r(await import('../examples/ParamKnob.svelte?raw')),
-			r(await import('../examples/ParamKnob.svelte?raw'))
+			r(await import('../examples/ParamKnob.tsx?raw')),
+			r(await import('../examples/ParamKnob.vue?raw'))
 		]
 	},
 	{
@@ -58,8 +58,8 @@ This concept will be importand later in the next example.`,
 		comp: r(await import('../examples/SnapPoints.astro')),
 		code: [
 			r(await import('../examples/SnapPoints.svelte?raw')),
-			r(await import('../examples/SnapPoints.svelte?raw')),
-			r(await import('../examples/SnapPoints.svelte?raw'))
+			r(await import('../examples/SnapPoints.tsx?raw')),
+			r(await import('../examples/SnapPoints.vue?raw'))
 		]
 	},
 	{
@@ -68,8 +68,8 @@ This concept will be importand later in the next example.`,
 		comp: r(await import('../examples/EnumParam.astro')),
 		code: [
 			r(await import('../examples/EnumParam.svelte?raw')),
-			r(await import('../examples/EnumParam.svelte?raw')),
-			r(await import('../examples/EnumParam.svelte?raw'))
+			r(await import('../examples/EnumParam.tsx?raw')),
+			r(await import('../examples/EnumParam.vue?raw'))
 		]
 	}
 ];

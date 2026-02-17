@@ -83,7 +83,7 @@ const logos = [
 					<article>
 						<h3>{e.name}</h3>
 						{lines.map((line) => (
-							<p>{line}</p>
+							<p set:html={line} />
 						))}
 
 						<div style="display:grid;grid-template-columns:128px 1fr">
