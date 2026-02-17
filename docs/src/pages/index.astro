@@ -1,6 +1,9 @@
 ---
 import Layout from '../layout.astro';
 import pkg from '../../../packages/web-knobs/package.json';
+import Code from '../lib/Code.astro';
+import { examples } from './_examples';
+import type { CodeLanguage } from 'astro';
 
 const logos = [
 	[
@@ -60,7 +63,34 @@ const logos = [
 
 	<section>
 		<h3>Examples</h3>
-		<p>Soon</p>
+
+		{
+			examples.map((e) => {
+				const Comp = e.comp;
+				const lines = e.description.split('\n');
+
+				const frameworks = ['svelte', 'react', 'vue'];
+				const languages: CodeLanguage[] = ['svelte', 'tsx', 'vue'];
+
+				return (
+					<article>
+						<h3>{e.name}</h3>
+						{lines.map((line) => (
+							<p>{line}</p>
+						))}
+
+						<div style="display:grid;grid-template-columns:128px 1fr">
+							<div>
+								<Comp />
+							</div>
+							<Code
+								tabs={e.code.map((code, i) => ({ code, name: frameworks[i], lang: languages[i] }))}
+							/>
+						</div>
+					</article>
+				);
+			})
+		}
 	</section>
 </Layout>
 

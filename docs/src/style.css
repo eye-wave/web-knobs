@@ -7,18 +7,6 @@ body {
 	font-size: 18px;
 }
 
-code {
-	background: #333;
-	padding: 20px;
-	font-size: 14px;
-	border-radius: 8px;
-	user-select: all;
-}
-
-code::before {
-	content: '$ ';
-}
-
 hr {
 	margin: 80px 0;
 }
