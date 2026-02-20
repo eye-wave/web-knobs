@@ -4,7 +4,7 @@ import {
 	type DraggableApi,
 	type DraggableOptions
 } from '../draggable';
-import { addReactive } from '../helpers';
+import { addReactive, type PropsToApi, type PropsToOptions } from '../helpers';
 
 export type ImageKnobReactive = {
 	/**
@@ -31,28 +31,14 @@ export type ImageKnobReactive = {
 	height: number;
 };
 
-export type ImageKnobApi = DraggableApi & {
-	readonly __knob_state: ImageState;
-	setSrc: (v: string) => void;
-	setNumberOfFrames: (v: number | null) => void;
-	setWidth: (v: number) => void;
-	setHeight: (v: number) => void;
-};
-
-export type ImageKnobOptions = DraggableOptions & {
-	onSrcChange?: (v: string) => void;
-	onNumberOfFramesChange?: (v: number | null) => void;
-	onWidthChange?: (v: number) => void;
-	onHeightChange?: (v: number) => void;
-} & ImageKnobReactive;
-
-type ImageState = Required<ImageKnobReactive>;
+export type ImageKnobApi = DraggableApi & PropsToApi<ImageKnobReactive, '_knob'>;
+export type ImageKnobOptions = DraggableOptions & PropsToOptions<ImageKnobReactive>;
 
 export function createImageKnob<E extends HTMLElement>(
 	container: E,
 	options: ImageKnobOptions
 ): ImageKnobApi {
-	const state = {} as ImageState;
+	const state = {} as Required<ImageKnobReactive>;
 	const image = new Image();
 
 	const transform = (value: number) => Math.floor(value * (state.numberOfFrames ?? 0));
@@ -116,7 +102,7 @@ export function createImageKnob<E extends HTMLElement>(
 		container.style.backgroundPosition = `0 ${-transform(value) * state.height}px`;
 	}
 
-	Object.defineProperty(engine, '__knob_state', {
+	Object.defineProperty(engine, '__state_knob', {
 		get() {
 			return state;
 		}

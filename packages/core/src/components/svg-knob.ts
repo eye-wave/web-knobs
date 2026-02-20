@@ -4,7 +4,14 @@ import {
 	type DraggableApi,
 	type DraggableOptions
 } from '../draggable';
-import { addReactive, describeArc, polarToCartesian, valueToAngle } from '../helpers';
+import {
+	addReactive,
+	describeArc,
+	polarToCartesian,
+	valueToAngle,
+	type PropsToApi,
+	type PropsToOptions
+} from '../helpers';
 
 export const DEFAULT_SIZE = 80;
 export const DEFAULT_BG_COLOR = '#333';
@@ -54,30 +61,8 @@ export type SvgKnobReactive = {
 	maxAngle?: number;
 };
 
-export type SvgKnobApi = DraggableApi & {
-	readonly __knob_state: SvgState;
-	setArcRadius: (v: number) => void;
-	setBgColor: (v: string) => void;
-	setCircleRadius: (v: number) => void;
-	setDisabledColor: (v: string) => void;
-	setMaxAngle: (v: number) => void;
-	setMinAngle: (v: number) => void;
-	setPointerLength: (v: number) => void;
-	setSize: (v: number) => void;
-	setSnapPointLength: (v: number) => void;
-};
-
-export type SvgKnobOptions = DraggableOptions & {
-	onArcRadiusChange?: (v: number) => void;
-	onBgColorChange?: (v: string) => void;
-	onCircleRadiusChange?: (v: number) => void;
-	onDisabledColorChange?: (v: string) => void;
-	onMaxAngleChange?: (v: number) => void;
-	onMinAngleChange?: (v: number) => void;
-	onPointerLengthChange?: (v: number) => void;
-	onSizeChange?: (v: number) => void;
-	onSnapPointLengthChange?: (v: number) => void;
-} & SvgKnobReactive;
+export type SvgKnobApi = DraggableApi & PropsToApi<SvgKnobReactive, '_knob'>;
+export type SvgKnobOptions = DraggableOptions & PropsToOptions<SvgKnobReactive>;
 
 type SvgState = Required<SvgKnobReactive>;
 
@@ -314,7 +299,7 @@ export function createSvgKnob<E extends HTMLElement>(
 		}
 	}
 
-	Object.defineProperty(engine, '__knob_state', {
+	Object.defineProperty(engine, '__state_knob', {
 		get() {
 			return state;
 		}

@@ -1,5 +1,5 @@
 import { clamp } from './helpers';
-import { addReactive } from './helpers/reactive';
+import { addReactive, type PropsToApi, type PropsToOptions } from './helpers/reactive';
 
 export const DEFAULT_KNOB_VALUE = 0.5;
 export const DEFAULT_KNOB_STEP = 0.05;
@@ -25,29 +25,8 @@ export type DraggableReactive = {
 	weight?: number;
 };
 
-export type DraggableApi = {
-	readonly __state: DragState;
-	destroy: () => void;
-	setValue: (v: number) => void;
-	setDisabled: (v: boolean) => void;
-	setDefaultValue: (v: number) => void;
-	setInvertWheel: (v: boolean) => void;
-	setStep: (v: number) => void;
-	setSnapPoints: (v: number[]) => void;
-	setSnapThreshold: (v: number) => void;
-	setWeight: (v: number) => void;
-};
-
-export type DraggableOptions = {
-	onValueChange?: (v: number) => void;
-	onDisabledChange?: (v: boolean) => void;
-	onDefaultValueChange?: (v: number) => void;
-	onInvertWheelChange?: (v: boolean) => void;
-	onStepChange?: (v: number) => void;
-	onSnapPointsChange?: (v: number[]) => void;
-	onSnapThresholdChange?: (v: number) => void;
-	onWeightChange?: (v: number) => void;
-} & DraggableReactive;
+export type DraggableApi = PropsToApi<DraggableReactive, ''> & { destroy: () => void };
+export type DraggableOptions = PropsToOptions<DraggableReactive>;
 
 type DragState = Required<DraggableReactive>;
 

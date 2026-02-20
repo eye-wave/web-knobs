@@ -24,3 +24,15 @@ export function addReactive<T>(
 	// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 	instantCall && callback?.(init);
 }
+
+type Defined<T> = T extends undefined ? never : T;
+
+export type PropsToApi<T, State extends string> = {
+	[K in keyof T as K extends string ? `set${Capitalize<K>}` : never]: (v: Defined<T[K]>) => void;
+} & { readonly [K in `__state${State}`]: Required<T> };
+
+export type PropsToOptions<T> = {
+	[K in keyof T as K extends string ? `on${Capitalize<K>}Change` : never]: (
+		v: Defined<T[K]>
+	) => void;
+} & T;
