@@ -1,6 +1,6 @@
 {
 	"name": "@eyewave/web-knobs",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"license": "MIT",
 	"description": " Cross-framework component library for building audio software on the web.",
 	"repository": {

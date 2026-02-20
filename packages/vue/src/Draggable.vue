@@ -67,35 +67,35 @@ onUnmounted(() => {
 
 watch(
 	() => props.modelValue,
-	(nv) => engine.value?.setValue(nv)
+	(nv) => engine.value?.setValue?.(nv)
 );
 watch(
 	() => props.disabled,
-	(nv) => engine.value?.setDisabled(nv)
+	(nv) => engine.value?.setDisabled?.(nv)
 );
 watch(
 	() => props.defaultValue,
-	(nv) => engine.value?.setDefaultValue(nv)
+	(nv) => engine.value?.setDefaultValue?.(nv)
 );
 watch(
 	() => props.invertWheel,
-	(nv) => engine.value?.setInvertWheel(nv)
+	(nv) => engine.value?.setInvertWheel?.(nv)
 );
 watch(
 	() => props.step,
-	(nv) => engine.value?.setStep(nv)
+	(nv) => engine.value?.setStep?.(nv)
 );
 watch(
 	() => props.snapPoints,
-	(nv) => nv && engine.value?.setSnapPoints(nv)
+	(nv) => nv && engine.value?.setSnapPoints?.(nv)
 );
 watch(
 	() => props.snapThreshold,
-	(nv) => engine.value?.setSnapThreshold(nv)
+	(nv) => engine.value?.setSnapThreshold?.(nv)
 );
 watch(
 	() => props.weight,
-	(nv) => engine.value?.setWeight(nv)
+	(nv) => engine.value?.setWeight?.(nv)
 );
 </script>
 

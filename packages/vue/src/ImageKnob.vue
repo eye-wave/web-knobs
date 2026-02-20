@@ -79,52 +79,52 @@ onUnmounted(() => {
 
 watch(
 	() => props.modelValue,
-	(v) => engine.value?.setValue(v)
+	(v) => engine.value?.setValue?.(v)
 );
 watch(
 	() => props.disabled,
-	(v) => engine.value?.setDisabled(v)
+	(v) => engine.value?.setDisabled?.(v)
 );
 watch(
 	() => props.defaultValue,
-	(v) => engine.value?.setDefaultValue(v)
+	(v) => engine.value?.setDefaultValue?.(v)
 );
 watch(
 	() => props.invertWheel,
-	(v) => engine.value?.setInvertWheel(v)
+	(v) => engine.value?.setInvertWheel?.(v)
 );
 watch(
 	() => props.step,
-	(v) => engine.value?.setStep(v)
+	(v) => engine.value?.setStep?.(v)
 );
 watch(
 	() => props.snapPoints,
-	(v) => v && engine.value?.setSnapPoints(v)
+	(v) => v && engine.value?.setSnapPoints?.(v)
 );
 watch(
 	() => props.snapThreshold,
-	(v) => engine.value?.setSnapThreshold(v)
+	(v) => engine.value?.setSnapThreshold?.(v)
 );
 watch(
 	() => props.weight,
-	(v) => engine.value?.setWeight(v)
+	(v) => engine.value?.setWeight?.(v)
 );
 
 watch(
 	() => props.src,
-	(v) => engine.value?.setSrc(v)
+	(v) => engine.value?.setSrc?.(v)
 );
 watch(
 	() => props.numberOfFrames,
-	(v) => engine.value?.setNumberOfFrames(v)
+	(v) => engine.value?.setNumberOfFrames?.(v)
 );
 watch(
 	() => props.width,
-	(v) => engine.value?.setWidth(v)
+	(v) => engine.value?.setWidth?.(v)
 );
 watch(
 	() => props.height,
-	(v) => engine.value?.setHeight(v)
+	(v) => engine.value?.setHeight?.(v)
 );
 </script>
 

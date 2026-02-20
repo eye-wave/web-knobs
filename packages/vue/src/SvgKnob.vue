@@ -118,72 +118,72 @@ onUnmounted(() => {
 
 watch(
 	() => props.modelValue,
-	(v) => engine.value?.setValue(v)
+	(v) => engine.value?.setValue?.(v)
 );
 watch(
 	() => props.disabled,
-	(v) => engine.value?.setDisabled(v)
+	(v) => engine.value?.setDisabled?.(v)
 );
 watch(
 	() => props.defaultValue,
-	(v) => engine.value?.setDefaultValue(v)
+	(v) => engine.value?.setDefaultValue?.(v)
 );
 watch(
 	() => props.invertWheel,
-	(v) => engine.value?.setInvertWheel(v)
+	(v) => engine.value?.setInvertWheel?.(v)
 );
 watch(
 	() => props.step,
-	(v) => engine.value?.setStep(v)
+	(v) => engine.value?.setStep?.(v)
 );
 watch(
 	() => props.snapPoints,
-	(v) => v && engine.value?.setSnapPoints(v)
+	(v) => v && engine.value?.setSnapPoints?.(v)
 );
 watch(
 	() => props.snapThreshold,
-	(v) => engine.value?.setSnapThreshold(v)
+	(v) => engine.value?.setSnapThreshold?.(v)
 );
 watch(
 	() => props.weight,
-	(v) => engine.value?.setWeight(v)
+	(v) => engine.value?.setWeight?.(v)
 );
 
 watch(
 	() => props.arcRadius,
-	(v) => engine.value?.setArcRadius(v)
+	(v) => engine.value?.setArcRadius?.(v)
 );
 watch(
 	() => props.bgColor,
-	(v) => engine.value?.setBgColor(v)
+	(v) => engine.value?.setBgColor?.(v)
 );
 watch(
 	() => props.circleRadius,
-	(v) => engine.value?.setCircleRadius(v)
+	(v) => engine.value?.setCircleRadius?.(v)
 );
 watch(
 	() => props.disabledColor,
-	(v) => engine.value?.setDisabledColor(v)
+	(v) => engine.value?.setDisabledColor?.(v)
 );
 watch(
 	() => props.maxAngle,
-	(v) => engine.value?.setMaxAngle(v)
+	(v) => engine.value?.setMaxAngle?.(v)
 );
 watch(
 	() => props.minAngle,
-	(v) => engine.value?.setMinAngle(v)
+	(v) => engine.value?.setMinAngle?.(v)
 );
 watch(
 	() => props.pointerLength,
-	(v) => engine.value?.setPointerLength(v)
+	(v) => engine.value?.setPointerLength?.(v)
 );
 watch(
 	() => props.size,
-	(v) => engine.value?.setSize(v)
+	(v) => engine.value?.setSize?.(v)
 );
 watch(
 	() => props.snapPointLength,
-	(v) => engine.value?.setSnapPointLength(v)
+	(v) => engine.value?.setSnapPointLength?.(v)
 );
 </script>
 
