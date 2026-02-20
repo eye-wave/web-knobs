@@ -49,6 +49,7 @@ const localId = (name: string) => `${formId}_${name}`;
 	}
 
 	label {
+		user-select: none;
 		cursor: pointer;
 		font-size: 14px;
 		background: #333;
@@ -84,5 +85,6 @@ const localId = (name: string) => `${formId}_${name}`;
 	.code-tabs > input:nth-of-type(7):checked ~ .tab-bar label:nth-of-type(7),
 	.code-tabs > input:nth-of-type(8):checked ~ .tab-bar label:nth-of-type(8) {
 		color: cyan;
+		background: #444;
 	}
 </style>

@@ -14,11 +14,7 @@
 		"@lucide/astro": "^0.574.0",
 		"astro": "^5.17.2",
 		"lucide": "^0.574.0",
-		"svelte": "^5.51.3",
 		"typescript": "^5.9.3"
-	},
-	"devDependencies": {
-		"@astrojs/svelte": "^7.2.5"
 	},
 	"license": "MIT"
 }
