@@ -4,7 +4,7 @@ const draggableConfig: WrapperConfig = {
 	componentName: 'Draggable',
 	importGroups: [
 		{
-			from: '@eyewave/web-knobs/core/draggable',
+			from: '../core/draggable',
 			imports: [
 				'createDraggable',
 				'DEFAULT_KNOB_SNAP_THRESHOLD',
@@ -72,7 +72,7 @@ const svgKnobConfig: WrapperConfig = {
 	componentName: 'SvgKnob',
 	importGroups: [
 		{
-			from: '@eyewave/web-knobs/core/components/svg-knob',
+			from: '../core/components/svg-knob',
 			imports: [
 				'createSvgKnob',
 				'DEFAULT_ARC_RADIUS',
@@ -90,7 +90,7 @@ const svgKnobConfig: WrapperConfig = {
 			]
 		},
 		{
-			from: '@eyewave/web-knobs/core/draggable',
+			from: '../core/draggable',
 			imports: [
 				'DEFAULT_KNOB_SNAP_THRESHOLD',
 				'DEFAULT_KNOB_STEP',
@@ -211,11 +211,11 @@ const imageKnobConfig: WrapperConfig = {
 	componentName: 'ImageKnob',
 	importGroups: [
 		{
-			from: '@eyewave/web-knobs/core/components/image-knob',
+			from: '../core/components/image-knob',
 			imports: ['createImageKnob', 'type ImageKnobApi']
 		},
 		{
-			from: '@eyewave/web-knobs/core/draggable',
+			from: '../core/draggable',
 			imports: [
 				'DEFAULT_KNOB_SNAP_THRESHOLD',
 				'DEFAULT_KNOB_STEP',
