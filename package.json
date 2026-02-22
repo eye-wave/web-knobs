@@ -14,7 +14,7 @@
 	"type": "module",
 	"workspaces": ["docs/"],
 	"scripts": {
-		"build": "rm dist -r && bun run build:core && bun run build:wrappers",
+		"build": "rm dist -rf && bun run build:core && bun run build:wrappers",
 		"build:core": "rolldown -c",
 		"build:wrappers": "bun run src-build/main.ts",
 		"format": "biome format --write",
