@@ -1,7 +1,6 @@
 import type { WrapperConfig } from './model';
 import * as react from './templates/react';
 import * as svelte from './templates/svelte';
-import * as vue from './templates/vue';
 
 type TemplateGenerator = {
 	generateJs: (cfg: WrapperConfig) => string;
@@ -29,8 +28,7 @@ type FrameworkMeta = {
 
 const FRAMEWORKS: FrameworkMeta[] = [
 	{ prefix: 'svelte', ext: 'svelte', exportsPropsType: true },
-	{ prefix: 'vue', ext: 'vue', exportsPropsType: false },
-	{ prefix: 'react', ext: 'tsx', exportsPropsType: false }
+	{ prefix: 'react', ext: 'jsx', exportsPropsType: false }
 ];
 
 function buildIndex(cfgs: WrapperConfig[], fw: FrameworkMeta): [string, string][] {
@@ -63,11 +61,7 @@ function buildIndex(cfgs: WrapperConfig[], fw: FrameworkMeta): [string, string][
 }
 
 export default function generate(cfg: WrapperConfig): [string, string][] {
-	return [
-		...generateLocal(cfg, svelte, 'svelte'),
-		...generateLocal(cfg, vue, 'vue'),
-		...generateLocal(cfg, react, 'react', 'tsx')
-	];
+	return [...generateLocal(cfg, svelte, 'svelte'), ...generateLocal(cfg, react, 'react', 'jsx')];
 }
 
 export function generateIndexes(cfgs: WrapperConfig[]): [string, string][] {

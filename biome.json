@@ -2,7 +2,7 @@
 	"$schema": "https://biomejs.dev/schemas/2.4.4/schema.json",
 	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
 	"files": {
-		"includes": ["**", "!!**/dist", "!**/*.svelte", "!**/*.vue", "!**/*.astro"]
+		"includes": ["**", "!!**/dist", "!**/*.svelte", "!**/*.astro"]
 	},
 	"formatter": {
 		"enabled": true,
@@ -28,7 +28,11 @@
 	},
 	"linter": {
 		"enabled": true,
-		"rules": { "recommended": true, "style": { "useTemplate": "off" } }
+		"rules": {
+			"recommended": true,
+			"style": { "useTemplate": "off" },
+			"correctness": { "useHookAtTopLevel": "off" }
+		}
 	},
 	"javascript": {
 		"formatter": {
@@ -49,7 +53,6 @@
 			"selfCloseVoidElements": "always"
 		}
 	},
-	"overrides": [{ "includes": ["*.svelte"] }, { "includes": ["*.astro"] }],
 	"assist": {
 		"enabled": true,
 		"actions": { "source": { "organizeImports": "on" } }

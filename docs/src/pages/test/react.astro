@@ -1,0 +1,19 @@
+---
+import Layout from "../../layout.astro"
+
+import BasicKnob from "../../examples/BasicKnob.tsx"
+import CustomKnob from "../../examples/CustomKnob.tsx"
+import EnumParam from "../../examples/EnumParam.tsx"
+import ImageKnob from "../../examples/ImageKnob.tsx"
+import ParamKnob from "../../examples/ParamKnob.tsx"
+import SnapPoints from "../../examples/SnapPoints.tsx"
+---
+
+<Layout title="Package test - react">
+  <BasicKnob client:visible />
+  <CustomKnob client:visible />
+  <EnumParam client:visible />
+  <ImageKnob client:visible />
+  <ParamKnob client:visible />
+  <SnapPoints client:visible />
+</Layout>

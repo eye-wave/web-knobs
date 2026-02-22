@@ -10,7 +10,8 @@ import {
 import type { WrapperConfig } from '../model';
 
 export function generateJs(cfg: WrapperConfig): string {
-	const { factoryFn, importGroups, propGroups, hostElement = 'div', hasSlot = false } = cfg;
+	const { componentName, factoryFn, importGroups, hostElement = 'div' } = cfg;
+
 	const props = allProps(cfg);
 
 	const importLines = importGroups.map(jsImportBlock).filter(Boolean).join('\n');
@@ -18,69 +19,59 @@ export function generateJs(cfg: WrapperConfig): string {
 
 	const propDestructure = props
 		.map((p) => (p.kind === 'default' ? `${p.name} = ${p.value}` : p.name))
-		.join(', ');
+		.join(',\n\t');
 
-	const cbDestructure = props.map((p) => handler(p.name)).join(', ');
+	const cbNames = props.map((p) => handler(p.name));
+	const cbDestructure = cbNames.join(',\n\t');
+	const cbAssignObject = cbNames.map((n) => `\t\t\t${n}`).join(',\n');
+	const cbDeps = cbNames.join(',\n\t\t');
+	const factoryPropLines = props.map((p) => `\t\t\t${p.name}`).join(',\n');
 
-	const cbAssign = props.map((p) => `\t\t\t${handler(p.name)}`).join(',\n');
-	const cbDeps = props.map((p) => `\t\t${handler(p.name)}`).join(',\n');
-
-	const factoryProps = propGroups
-		.map((g) => g.map((p) => `\t\t\t${p.name}`).join(',\n'))
+	const factoryCbLines = props
+		.map((p) => `\t\t\t${handler(p.name)}: callbacksRef.current?.${handler(p.name)}`)
 		.join(',\n');
 
-	const factoryCbs = propGroups
-		.map((g) =>
-			g.map((p) => `\t\t\t${handler(p.name)}: callbacksRef.current?.${handler(p.name)}`).join(',\n')
+	const setterEffects = props
+		.map(
+			(p) => `useEffect(() => { engineRef.current?.${setter(p.name)}(${p.name}); },[${p.name}]);`
 		)
-		.join(',\n');
-
-	const syncEffects = propGroups
-		.map((g) =>
-			g
-				.map(
-					(p) => `\tuseEffect(() => engineRef.current?.${setter(p.name)}(${p.name}), [${p.name}]);`
-				)
-				.join('\n')
-		)
-		.join('\n\n');
-
-	const childrenArg = hasSlot ? 'children, ' : '';
-	const jsx = hasSlot
-		? `<${hostElement} ref={containerRef} {...${hostElement}Props}>{children}</${hostElement}>`
-		: `<${hostElement} ref={containerRef} {...${hostElement}Props} />`;
+		.join('\n\t');
 
 	return `${importLines}
 ${reactImport}
 
-export default function ${cfg.componentName}({
-\t${childrenArg}${propDestructure},
+export default function ${componentName}({
+\t${propDestructure},
+
 \t${cbDestructure},
+
 \t...${hostElement}Props
 }) {
 \tconst containerRef = useRef(null);
-\tconst engineRef    = useRef(null);
+\tconst engineRef = useRef(null);
 \tconst callbacksRef = useRef(null);
 
 \tuseEffect(() => {
 \t\tcallbacksRef.current = {
-${cbAssign}
+${cbAssignObject}
 \t\t};
 \t}, [
-${cbDeps}
+\t\t${cbDeps}
 \t]);
 
 \tuseEffect(() => {
 \t\tif (!containerRef.current) return;
+
 \t\tif (engineRef.current) {
-\t\t\tengineRef.current.destroy();
+\t\t\tengineRef.current?.destroy();
 \t\t\tengineRef.current = null;
 \t\t}
+
 \t\tcontainerRef.current.innerHTML = '';
 
 \t\tengineRef.current = ${factoryFn}(containerRef.current, {
-${factoryProps},
-${factoryCbs}
+${factoryPropLines},
+${factoryCbLines}
 \t\t});
 
 \t\treturn () => {
@@ -89,9 +80,9 @@ ${factoryCbs}
 \t\t};
 \t}, []);
 
-${syncEffects}
+\t${setterEffects}
 
-\treturn ${jsx};
+\treturn <${hostElement} ref={containerRef} {...${hostElement}Props} />;
 }
 `;
 }

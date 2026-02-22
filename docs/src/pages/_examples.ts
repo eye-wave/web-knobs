@@ -12,7 +12,7 @@ type Entry = {
 	description: string;
 	// biome-ignore lint/suspicious/noExplicitAny: this 'any' is required because astro doesn't have a Component type
 	comp: (...args: any) => any;
-	code: [string, string, string, string];
+	code: [string, string, string];
 };
 
 export const examples: Entry[] = [
@@ -23,8 +23,7 @@ export const examples: Entry[] = [
 		code: [
 			await js(import('../examples/BasicKnob.html?raw'), import('../examples/BasicKnob.ts?raw')),
 			r(await import('../examples/BasicKnob.svelte?raw')),
-			r(await import('../examples/BasicKnob.tsx?raw')),
-			r(await import('../examples/BasicKnob.vue?raw'))
+			r(await import('../examples/BasicKnob.tsx?raw'))
 		]
 	},
 	{
@@ -34,8 +33,7 @@ export const examples: Entry[] = [
 		code: [
 			await js(import('../examples/ImageKnob.html?raw'), import('../examples/ImageKnob.ts?raw')),
 			r(await import('../examples/ImageKnob.svelte?raw')),
-			r(await import('../examples/ImageKnob.tsx?raw')),
-			r(await import('../examples/ImageKnob.vue?raw'))
+			r(await import('../examples/ImageKnob.tsx?raw'))
 		]
 	},
 	{
@@ -45,8 +43,7 @@ export const examples: Entry[] = [
 		code: [
 			await js(import('../examples/CustomKnob.html?raw'), import('../examples/CustomKnob.ts?raw')),
 			r(await import('../examples/CustomKnob.svelte?raw')),
-			r(await import('../examples/CustomKnob.tsx?raw')),
-			r(await import('../examples/CustomKnob.vue?raw'))
+			r(await import('../examples/CustomKnob.tsx?raw'))
 		]
 	},
 	{
@@ -56,8 +53,7 @@ export const examples: Entry[] = [
 		code: [
 			await js(import('../examples/ParamKnob.html?raw'), import('../examples/ParamKnob.ts?raw')),
 			r(await import('../examples/ParamKnob.svelte?raw')),
-			r(await import('../examples/ParamKnob.tsx?raw')),
-			r(await import('../examples/ParamKnob.vue?raw'))
+			r(await import('../examples/ParamKnob.tsx?raw'))
 		]
 	},
 	{
@@ -69,8 +65,7 @@ This concept will be importand later in the next example.`,
 		code: [
 			await js(import('../examples/SnapPoints.html?raw'), import('../examples/SnapPoints.ts?raw')),
 			r(await import('../examples/SnapPoints.svelte?raw')),
-			r(await import('../examples/SnapPoints.tsx?raw')),
-			r(await import('../examples/SnapPoints.vue?raw'))
+			r(await import('../examples/SnapPoints.tsx?raw'))
 		]
 	},
 	{
@@ -80,8 +75,7 @@ This concept will be importand later in the next example.`,
 		code: [
 			await js(import('../examples/EnumParam.html?raw'), import('../examples/EnumParam.ts?raw')),
 			r(await import('../examples/EnumParam.svelte?raw')),
-			r(await import('../examples/EnumParam.tsx?raw')),
-			r(await import('../examples/EnumParam.vue?raw'))
+			r(await import('../examples/EnumParam.tsx?raw'))
 		]
 	}
 ];

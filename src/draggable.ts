@@ -25,7 +25,9 @@ export type DraggableReactive = {
 	weight?: number;
 };
 
-export type DraggableApi = PropsToApi<DraggableReactive, ''> & { destroy: () => void };
+export type DraggableApi = PropsToApi<DraggableReactive, ''> & {
+	destroy: () => void;
+};
 export type DraggableOptions = PropsToOptions<DraggableReactive>;
 
 type DragState = Required<DraggableReactive>;
@@ -46,6 +48,7 @@ export function createDraggable<E extends HTMLElement>(
 
 	// State
 	const s = {} as DragState;
+
 	addReactive(
 		s,
 		'value',
@@ -84,16 +87,30 @@ export function createDraggable<E extends HTMLElement>(
 	const abort = new AbortController();
 
 	function init(): void {
-		container.addEventListener('dblclick', handleDblClick, { signal: abort.signal });
-		container.addEventListener('keydown', handleKeyDown, { signal: abort.signal });
-		container.addEventListener('mousedown', handleMouseDown, { signal: abort.signal });
-		container.addEventListener('touchstart', handleTouchStart, { signal: abort.signal });
+		container.addEventListener('dblclick', handleDblClick, {
+			signal: abort.signal
+		});
+		container.addEventListener('keydown', handleKeyDown, {
+			signal: abort.signal
+		});
+		container.addEventListener('mousedown', handleMouseDown, {
+			signal: abort.signal
+		});
+		container.addEventListener('touchstart', handleTouchStart, {
+			signal: abort.signal
+		});
 		container.addEventListener('wheel', handleWheel, { signal: abort.signal });
 
-		window.addEventListener('mousemove', handleMouseMove, { signal: abort.signal });
+		window.addEventListener('mousemove', handleMouseMove, {
+			signal: abort.signal
+		});
 		window.addEventListener('mouseup', handleMouseUp, { signal: abort.signal });
-		window.addEventListener('touchend', handleMouseUp, { signal: abort.signal });
-		window.addEventListener('touchmove', handleTouchMove, { signal: abort.signal });
+		window.addEventListener('touchend', handleMouseUp, {
+			signal: abort.signal
+		});
+		window.addEventListener('touchmove', handleTouchMove, {
+			signal: abort.signal
+		});
 	}
 
 	function destroy(): void {
@@ -185,7 +202,7 @@ export function createDraggable<E extends HTMLElement>(
 			let minDiff = Infinity;
 
 			for (let i = 0; i < s.snapPoints.length; i++) {
-				const diff = Math.abs(s.snapPoints[i] - s.value);
+				const diff = Math.abs((s.snapPoints[i] ?? 1.0) - s.value);
 				if (diff < minDiff) {
 					minDiff = diff;
 					currentIndex = i;
@@ -195,7 +212,7 @@ export function createDraggable<E extends HTMLElement>(
 			let nextIndex = currentIndex + (isRight ? 1 : -1);
 			nextIndex = clamp(nextIndex, 0, s.snapPoints.length - 1);
 
-			s.value = s.snapPoints[nextIndex];
+			s.value = s.snapPoints[nextIndex] ?? 0.5;
 		} else {
 			s.value = clamp(s.value + (isRight ? 1 : -1) * s.step);
 		}

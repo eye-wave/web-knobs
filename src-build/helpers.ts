@@ -4,7 +4,6 @@ export const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 export const setter = (name: string) => `set${cap(name)}`;
 export const handler = (name: string) => `on${cap(name)}Change`;
 export const local = (p: PropDefinition) => p.alias ?? p.name;
-export const vueName = (p: PropDefinition) => (p.bindable ? 'modelValue' : p.name);
 export const allProps = (cfg: WrapperConfig): PropDefinition[] => cfg.propGroups.flat();
 
 /** All *Reactive type names across import groups */

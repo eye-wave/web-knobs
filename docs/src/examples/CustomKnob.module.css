@@ -1,0 +1,29 @@
+.knob {
+	z-index: 0;
+	user-select: none;
+	width: 60px;
+	height: 60px;
+	border-radius: 100px;
+	background: #000;
+	position: relative;
+	display: grid;
+	place-items: center;
+}
+
+.glow,
+.thumb {
+	z-index: -1;
+	position: absolute;
+	background: red;
+	border-radius: 30px;
+}
+
+.glow {
+	width: 30px;
+	height: 30px;
+}
+
+.thumb {
+	width: 10px;
+	height: 20px;
+}

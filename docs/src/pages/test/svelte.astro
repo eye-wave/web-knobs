@@ -1,0 +1,19 @@
+---
+import Layout from "../../layout.astro"
+
+import BasicKnob from "../../examples/BasicKnob.svelte"
+import CustomKnob from "../../examples/CustomKnob.svelte"
+import EnumParam from "../../examples/EnumParam.svelte"
+import ImageKnob from "../../examples/ImageKnob.svelte"
+import ParamKnob from "../../examples/ParamKnob.svelte"
+import SnapPoints from "../../examples/SnapPoints.svelte"
+---
+
+<Layout title="Package test - svelte">
+  <BasicKnob client:visible />
+  <CustomKnob client:visible />
+  <EnumParam client:visible />
+  <ImageKnob client:visible />
+  <ParamKnob client:visible />
+  <SnapPoints client:visible />
+</Layout>
