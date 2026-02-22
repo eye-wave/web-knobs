@@ -1,2 +1,2 @@
-export * from './draggable';
-export * from './helpers';
+export * from './draggable.js';
+export * from './helpers.js';

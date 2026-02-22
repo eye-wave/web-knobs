@@ -1,4 +1,4 @@
-import { Param } from './base';
+import { Param } from './base.js';
 
 export class LogParam extends Param<number> {
 	// @ts-expect-error this value is initialized in the constructor

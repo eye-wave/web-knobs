@@ -1,4 +1,4 @@
-import { Param } from './base';
+import { Param } from './base.js';
 
 export class LinearParam extends Param<number> {
 	constructor(

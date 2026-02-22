@@ -3,8 +3,8 @@ import {
 	DEFAULT_KNOB_VALUE,
 	type DraggableApi,
 	type DraggableOptions
-} from '../draggable';
-import { addReactive, type PropsToApi, type PropsToOptions } from '../helpers';
+} from '../draggable.js';
+import { addReactive, type PropsToApi, type PropsToOptions } from '../helpers.js';
 
 export type ImageKnobReactive = {
 	/**

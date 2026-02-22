@@ -3,7 +3,7 @@ import {
 	DEFAULT_KNOB_VALUE,
 	type DraggableApi,
 	type DraggableOptions
-} from '../draggable';
+} from '../draggable.js';
 import {
 	addReactive,
 	describeArc,
@@ -11,7 +11,7 @@ import {
 	valueToAngle,
 	type PropsToApi,
 	type PropsToOptions
-} from '../helpers';
+} from '../helpers.js';
 
 export const DEFAULT_SIZE = 80;
 export const DEFAULT_BG_COLOR = '#333';

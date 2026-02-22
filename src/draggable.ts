@@ -1,5 +1,5 @@
-import { clamp } from './helpers';
-import { addReactive, type PropsToApi, type PropsToOptions } from './helpers/reactive';
+import { clamp } from './helpers.js';
+import { addReactive, type PropsToApi, type PropsToOptions } from './helpers/reactive.js';
 
 export const DEFAULT_KNOB_VALUE = 0.5;
 export const DEFAULT_KNOB_STEP = 0.05;

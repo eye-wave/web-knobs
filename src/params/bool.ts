@@ -1,4 +1,4 @@
-import { Param, type KnobProps } from './base';
+import { Param, type KnobProps } from './base.js';
 
 export class BoolParam extends Param<boolean> {
 	public readonly snapPoints: number[] = [0.0, 1.0] as const;

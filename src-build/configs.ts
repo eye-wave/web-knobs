@@ -4,7 +4,7 @@ const draggableConfig: WrapperConfig = {
 	componentName: 'Draggable',
 	importGroups: [
 		{
-			from: '../core/draggable',
+			from: '../core/draggable.js',
 			imports: [
 				'createDraggable',
 				'DEFAULT_KNOB_SNAP_THRESHOLD',
@@ -72,7 +72,7 @@ const svgKnobConfig: WrapperConfig = {
 	componentName: 'SvgKnob',
 	importGroups: [
 		{
-			from: '../core/components/svg-knob',
+			from: '../core/components/svg-knob.js',
 			imports: [
 				'createSvgKnob',
 				'DEFAULT_ARC_RADIUS',
@@ -90,7 +90,7 @@ const svgKnobConfig: WrapperConfig = {
 			]
 		},
 		{
-			from: '../core/draggable',
+			from: '../core/draggable.js',
 			imports: [
 				'DEFAULT_KNOB_SNAP_THRESHOLD',
 				'DEFAULT_KNOB_STEP',
@@ -211,11 +211,11 @@ const imageKnobConfig: WrapperConfig = {
 	componentName: 'ImageKnob',
 	importGroups: [
 		{
-			from: '../core/components/image-knob',
+			from: '../core/components/image-knob.js',
 			imports: ['createImageKnob', 'type ImageKnobApi']
 		},
 		{
-			from: '../core/draggable',
+			from: '../core/draggable.js',
 			imports: [
 				'DEFAULT_KNOB_SNAP_THRESHOLD',
 				'DEFAULT_KNOB_STEP',

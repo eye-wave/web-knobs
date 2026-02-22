@@ -1,6 +1,6 @@
-import { clamp } from '../helpers';
-import type { KnobProps } from './base';
-import { Param } from './base';
+import { clamp } from '../helpers.js';
+import type { KnobProps } from './base.js';
+import { Param } from './base.js';
 
 export type VariantsOf<T> = T extends EnumParam<infer U> ? U[number] : never;
 export class EnumParam<T extends readonly string[]> extends Param<T[number]> {
@@ -31,7 +31,8 @@ export class EnumParam<T extends readonly string[]> extends Param<T[number]> {
 		this.#dictSize = variants.length;
 
 		for (let i = 0; i < variants.length; i++) {
-			const name: T[number] = variants[i];
+			// biome-ignore lint/style/noNonNullAssertion: this is guaranteed to work
+			const name: T[number] = variants[i]!;
 
 			this.#dictionary[name] = i;
 		}
@@ -48,6 +49,7 @@ export class EnumParam<T extends readonly string[]> extends Param<T[number]> {
 		const clampedValue = clamp(value, 0.0, 1.0);
 		const index = Math.round(clampedValue * (this.#dictSize - 1));
 
-		return this.#variants[index];
+		// biome-ignore lint/style/noNonNullAssertion: this is guaranteed to work
+		return this.#variants[index]!;
 	}
 }
