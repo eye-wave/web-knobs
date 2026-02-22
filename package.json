@@ -64,11 +64,13 @@
 		},
 		"./svelte": {
 			"import": "./dist/svelte/index.js",
+			"default": "./dist/svelte/index.js",
 			"svelte": "./dist/svelte/index.js",
 			"types": "./dist/svelte/index.d.ts"
 		},
 		"./react": {
 			"import": "./dist/react/index.js",
+			"default": "./dist/react/index.js",
 			"react": "./dist/react/index.js",
 			"types": "./dist/react/index.d.ts"
 		}
