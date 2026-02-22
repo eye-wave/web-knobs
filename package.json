@@ -63,14 +63,12 @@
 			"types": "./dist/core/components/image-knob.d.ts"
 		},
 		"./svelte": {
-			"default": "./dist/svelte/index.js",
-			"browser": "./dist/svelte/index.js",
+			"import": "./dist/svelte/index.js",
 			"svelte": "./dist/svelte/index.js",
 			"types": "./dist/svelte/index.d.ts"
 		},
 		"./react": {
-			"default": "./dist/react/index.js",
-			"browser": "./dist/react/index.js",
+			"import": "./dist/react/index.js",
 			"react": "./dist/react/index.js",
 			"types": "./dist/react/index.d.ts"
 		}
