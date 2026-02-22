@@ -29,10 +29,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Build web-knobs
-        run: |
-          cd packages/web-knobs
-          bun run build
-          cd ../..
+        run: bun run build
 
       - name: Build docs
         run: |
