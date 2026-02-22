@@ -75,7 +75,5 @@
 			"types": "./dist/react/index.d.ts"
 		}
 	},
-	"keywords": ["svelte", "react", "audio", "knobs"],
-	"module": "src/index.ts",
-	"private": true
+	"keywords": ["svelte", "react", "audio", "knobs"]
 }
