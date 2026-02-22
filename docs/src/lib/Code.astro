@@ -1,22 +1,22 @@
 ---
-import type { CodeLanguage } from 'astro';
-import { Code as AstroCode } from 'astro:components';
-import { hash } from 'node:crypto';
+import type { CodeLanguage } from 'astro'
+import { Code as AstroCode } from 'astro:components'
+import { hash } from 'node:crypto'
 
 type Tab = {
-	name: string;
-	code: string;
-	lang?: CodeLanguage;
-};
+	name: string
+	code: string
+	lang?: CodeLanguage
+}
 
 type Props = {
-	tabs: Tab[];
-};
+	tabs: Tab[]
+}
 
-const { tabs } = Astro.props;
+const { tabs } = Astro.props
 
-const formId = hash('md5', JSON.stringify(tabs), 'base64url').slice(0, 5);
-const localId = (name: string) => `${formId}_${name}`;
+const formId = hash('md5', JSON.stringify(tabs), 'base64url').slice(0, 5)
+const localId = (name: string) => `${formId}_${name}`
 ---
 
 <div class="code-tabs">

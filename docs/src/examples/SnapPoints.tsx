@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { SvgKnob } from '@eyewave/web-knobs/react';
 
 export default function SnapKnob() {

@@ -10,8 +10,7 @@ const js = async (ihtml: Promise<{ default: string }>, ijs: Promise<{ default: s
 type Entry = {
 	name: string;
 	description: string;
-	// this 'any' is required because astro doesn't have a Component type
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	// biome-ignore lint/suspicious/noExplicitAny: this 'any' is required because astro doesn't have a Component type
 	comp: (...args: any) => any;
 	code: [string, string, string, string];
 };

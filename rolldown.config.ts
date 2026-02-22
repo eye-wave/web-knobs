@@ -11,6 +11,7 @@ export default defineConfig({
 		'src/draggable.ts'
 	],
 	output: {
+		dir: 'dist/core',
 		format: 'es',
 		sourcemap: true,
 		preserveModules: true

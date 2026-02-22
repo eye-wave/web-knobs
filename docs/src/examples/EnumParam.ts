@@ -32,7 +32,9 @@ function onChange(v: number, toUpdate: SvgKnobApi[] = []) {
 	filter_knob_value.textContent = filterTypeParam.denormalize(v);
 	bool_knob_value.textContent = booleanParam.denormalize(v).toString();
 
-	toUpdate.forEach((k) => k.setValue(v));
+	toUpdate.forEach((k) => {
+		k.setValue(v);
+	});
 
 	isSyncing = false;
 }

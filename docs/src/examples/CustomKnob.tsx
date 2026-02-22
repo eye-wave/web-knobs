@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { Draggable } from '@eyewave/web-knobs/react';
 import { valueToAngle } from '@eyewave/web-knobs/core/helpers';
 import styles from './CustomKnob.module.css';
