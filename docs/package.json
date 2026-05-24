@@ -10,17 +10,17 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"@astrojs/react": "^4.4.2",
-		"@astrojs/svelte": "^7.2.5",
+		"@astrojs/react": "^5.0.5",
+		"@astrojs/svelte": "^8.1.1",
 		"@eyewave/web-knobs": "file:..",
-		"@types/react": "^19.2.14",
+		"@types/react": "^19.2.15",
 		"@types/react-dom": "^19.2.3",
-		"astro": "^5.17.2",
-		"lucide": "^0.574.0",
-		"react": "^19.2.4",
-		"react-dom": "^19.2.4",
-		"svelte": "^5.53.2",
-		"typescript": "^5.9.3"
+		"astro": "^6.3.7",
+		"lucide": "^1.16.0",
+		"react": "^19.2.6",
+		"react-dom": "^19.2.6",
+		"svelte": "^5.55.9",
+		"typescript": "^6.0.3"
 	},
 	"license": "MIT"
 }
