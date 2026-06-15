@@ -21,11 +21,11 @@
 		"lint": "biome lint"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.4.15",
+		"@biomejs/biome": "^2.5.0",
 		"@eslint/compat": "^2.1.0",
 		"@eslint/js": "^10.0.1",
-		"@swc/core": "^1.15.40",
-		"rolldown": "^1.0.2",
+		"@swc/core": "^1.15.41",
+		"rolldown": "^1.1.1",
 		"unplugin-isolated-decl": "^0.16.0",
 		"@types/bun": "latest"
 	},
