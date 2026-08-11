@@ -4,6 +4,7 @@
 	"license": "MIT",
 	"description": " Cross-framework component library for building audio software on the web.",
 	"repository": {
+		"type": "git",
 		"url": "git+https://github.com/eye-wave/svelte-knobs.git"
 	},
 	"files": ["dist", "!dist/**/*.test.*", "!dist/**/*.spec.*", "**/*.d.ts"],
@@ -21,58 +22,70 @@
 		"lint": "biome lint"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.5.0",
-		"@eslint/compat": "^2.1.0",
-		"@eslint/js": "^10.0.1",
-		"@swc/core": "^1.15.41",
-		"rolldown": "^1.1.1",
-		"unplugin-isolated-decl": "^0.16.0",
+		"@biomejs/biome": "2",
+		"@eslint/compat": "2",
+		"@eslint/js": "10",
+		"@swc/core": "1",
+		"rolldown": "1",
+		"unplugin-isolated-decl": "^0.17",
 		"@types/bun": "latest"
 	},
 	"peerDependencies": {
-		"react": "^19.2.0",
-		"svelte": "^5.51.3",
-		"typescript": "~5.9.3"
+		"react": "19",
+		"svelte": "5",
+		"typescript": "6"
+	},
+	"peerDependenciesMeta": {
+		"react": {
+			"optional": true
+		},
+		"svelte": {
+			"optional": true
+		},
+		"typescript": {
+			"optional": true
+		}
 	},
 	"exports": {
+		"./package.json": "./package.json",
 		"./core": {
-			"default": "./dist/core/index.js",
+			"types": "./dist/core/index.d.ts",
 			"browser": "./dist/core/index.js",
-			"types": "./dist/core/index.d.ts"
+			"default": "./dist/core/index.js"
 		},
 		"./core/params": {
-			"default": "./dist/core/params.js",
-			"types": "./dist/core/params.d.ts"
+			"types": "./dist/core/params.d.ts",
+			"default": "./dist/core/params.js"
 		},
 		"./core/helpers": {
-			"default": "./dist/core/helpers.js",
-			"types": "./dist/core/helpers.d.ts"
+			"types": "./dist/core/helpers.d.ts",
+			"default": "./dist/core/helpers.js"
 		},
 		"./core/draggable": {
-			"default": "./dist/core/draggable.js",
-			"types": "./dist/core/draggable.d.ts"
+			"types": "./dist/core/draggable.d.ts",
+			"default": "./dist/core/draggable.js"
 		},
 		"./core/components/svg-knob": {
-			"default": "./dist/core/components/svg-knob.js",
+			"types": "./dist/core/components/svg-knob.d.ts",
 			"browser": "./dist/core/components/svg-knob.js",
-			"types": "./dist/core/components/svg-knob.d.ts"
+			"default": "./dist/core/components/svg-knob.js"
 		},
 		"./core/components/image-knob": {
-			"default": "./dist/core/components/image-knob.js",
+			"types": "./dist/core/components/image-knob.d.ts",
 			"browser": "./dist/core/components/image-knob.js",
-			"types": "./dist/core/components/image-knob.d.ts"
+			"default": "./dist/core/components/image-knob.js"
 		},
 		"./svelte": {
-			"import": "./dist/svelte/index.js",
-			"default": "./dist/svelte/index.js",
+			"types": "./dist/svelte/index.d.ts",
 			"svelte": "./dist/svelte/index.js",
-			"types": "./dist/svelte/index.d.ts"
+			"import": "./dist/svelte/index.js",
+			"default": "./dist/svelte/index.js"
 		},
 		"./react": {
-			"import": "./dist/react/index.js",
-			"default": "./dist/react/index.js",
+			"types": "./dist/react/index.d.ts",
 			"react": "./dist/react/index.js",
-			"types": "./dist/react/index.d.ts"
+			"import": "./dist/react/index.js",
+			"default": "./dist/react/index.js"
 		}
 	},
 	"keywords": ["svelte", "react", "audio", "knobs"]
