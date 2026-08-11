@@ -33,10 +33,10 @@ jobs:
 
       - name: Build docs
         run: |
+          find docs/node_modules
           cd docs
           bun run build
           cd ..
-          find docs/node_modules
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
