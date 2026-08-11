@@ -31,9 +31,11 @@ jobs:
       - name: Build web-knobs
         run: bun run build
 
+      - name: Reinstall docs deps
+        run: bun install --frozen-lockfile
+
       - name: Build docs
         run: |
-          find docs/node_modules
           cd docs
           bun run build
           cd ..
