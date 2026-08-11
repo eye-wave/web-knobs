@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: false
 
 jobs:
@@ -36,6 +36,7 @@ jobs:
           cd docs
           bun run build
           cd ..
+          find docs/node_modules
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
